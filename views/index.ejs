@@ -1,0 +1,51 @@
+<%- include('partials/header'); %>
+
+  <h1>This day is all about <i>argues, debates</i> and <i><u>discussions.</u></i></h1>
+  <p>ideas, development, growth, support, <mark>opportunities.</mark></p>
+  <br>
+  <p><a href="#"><i>Italic Link Button</i></a>
+    <a href="#"><b>Discover More &rarr;</b></a>
+  </p>
+  </header>
+
+  <main>
+    <div>
+      <details>
+        <summary>Filters</summary>
+        <p>Trending</p>
+        <p>Category</p>
+        <p>Test</p>
+      </details>
+    </div>
+    <section>
+
+      <!-- <header>
+        <h2>Trending Posts</h2>
+      </header> -->
+
+      <% posts.forEach(post=> { %>
+        <aside>
+          <sup>
+            <%= post.category %>
+          </sup>
+          <h3>
+            <%= post.title %>
+          </h3>
+          <p>
+            <%= post.description.substring(0, 50) + "..." ; %>
+          </p>
+
+          <p><small>
+              <%= post.description.substring(25, 50) + "..." ; %>
+            </small></p>
+          <a href="#"><i>Read More &rarr;</i></a>
+        </aside>
+        <% }) %>
+    </section>
+
+  </main>
+
+
+
+
+  <%- include('partials/footer'); %>

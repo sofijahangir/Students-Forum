@@ -1,0 +1,35 @@
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+
+<footer>
+  <hr>
+  <p>
+    Made by <a href="#" target="_blank">Jahangir Ahmad
+      &nearr;</a><br>
+  </p>
+</footer>
+
+<script>
+  function newIdea() {
+    let company = document.getElementById("company").value || "GitHub";
+    let focusAreas = [];
+    document.querySelectorAll("input[name='focus[]']:checked").forEach(el => { focusAreas.push(el.value) });
+    let focus = focusAreas.join(" / ") || "stealthy growth";
+    let founders = document.querySelector("input[name='founders']:checked").value;
+    let hobby = document.getElementById("hobby").value || "design";
+    let model = document.getElementById("model").value;
+
+    document.getElementById("results").innerHTML = `<br><h3>Amazing Idea &mdash;</h3><p>A ${model} <mark><b>${company} for ${hobby}</b></mark><br>with ${founders} and a focus on<br>${focus}.</p>`;
+  }
+</script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+  integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+</body>
+</html>
