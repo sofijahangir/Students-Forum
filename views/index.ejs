@@ -3,21 +3,30 @@
   <h1>This day is all about <i>argues, debates</i> and <i><u>discussions.</u></i></h1>
   <p>ideas, development, growth, support, <mark>opportunities.</mark></p>
   <br>
-  <p><a href="#"><i>Italic Link Button</i></a>
-    <a href="#"><b>Discover More &rarr;</b></a>
+  <p>
+    <!-- <a href="#"><i>Italic Link Button</i></a> -->
+    <a href="#posts"><b>Discover More &darr;</b></a>
+
+    <% if(!user){ %>
+
+      <% } else{ %>
+        <a href="post/new"><i>New Post</i></a>
+        <% } %>
   </p>
   </header>
 
-  <main>
-    <div>
+  <%- include('partials/main'); %>
+    <!-- Commenting the filters for now -->
+    <!-- Todo: Implement the filters later -->
+    <!-- <div>
       <details>
         <summary>Filters</summary>
         <p>Trending</p>
         <p>Category</p>
         <p>Test</p>
       </details>
-    </div>
-    <section>
+    </div> -->
+    <section id="posts">
 
       <!-- <header>
         <h2>Trending Posts</h2>
@@ -28,24 +37,44 @@
           <sup>
             <%= post.category %>
           </sup>
+          <br>
           <h3>
             <%= post.title %>
           </h3>
           <p>
             <%= post.description.substring(0, 50) + "..." ; %>
           </p>
-
           <p><small>
-              <%= post.description.substring(25, 50) + "..." ; %>
+
+              <% var name=post.author %>
+
+                <% const name2=name.charAt(0).toUpperCase() + name.slice(1); %>
+
+                  <% var name3=name2.substring(0, name2.lastIndexOf("@"));%>
+
+
+                    <strong>Posted By :-
+                      <%= name3; %>
+
+
+                        <br>
+                        <!-- Shorten the date -->
+
+                        <% const options={ weekday: 'long' , year: 'numeric' , month: 'long' , day: 'numeric' };%>
+
+                          Date :- <%= post.createdAt.toLocaleDateString('en-US', options); %>
+                    </strong>
             </small></p>
-          <a href="#"><i>Read More &rarr;</i></a>
+          <%var id=post._id %>
+
+            <a href="post/read/<%= id; %>"><i>Read More &rarr;</i></a>
         </aside>
         <% }) %>
     </section>
 
-  </main>
 
 
 
 
-  <%- include('partials/footer'); %>
+
+    <%- include('partials/footer'); %>
