@@ -24,7 +24,7 @@ require('./config/passport-config')(passport);
 dotenv.config();
 
 const app = express();
-const { PORT } = process.env;
+const port = process.env.PORT || 3000;
 
 // EJS
 // app.use(expressLayouts);
@@ -99,6 +99,6 @@ app.get('/logout', (req, res) => {
   res.redirect('/');
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is listening on port ${PORT}`);
+app.listen(port, () => {
+  console.log(`Server is listening on port ${port}`);
 });
