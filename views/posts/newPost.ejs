@@ -1,0 +1,23 @@
+<%- include('../partials/header'); %>
+
+  <section>
+    <form action="/post/new" method="POST">
+      <header>
+        <h2>New Post</h2>
+      </header>
+      <label for="input1">Post Title:</label>
+      <input type="text" id="title" name="title" size="20" placeholder="Post Title">
+      <label for="select1">Category:</label>
+      <select id="category" name="category">
+        <option value="Javascript">Javascript</option>
+        <option value="Python">Python</option>
+        <option value="C++">C++</option>
+        <option value="General">Gereral</option>
+        <option value="Science">Science</option>
+      </select>
+      <label for="textarea1">Post Description:</label>
+      <textarea cols="40" rows="5" id="textarea1" name="description"></textarea>
+      <button type="submit">Post</button>
+    </form>
+  </section>
+  <%- include('../partials/footer'); %>
