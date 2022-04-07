@@ -8,6 +8,12 @@
 
   <!-- MVP CSS -->
   <link rel="icon" href="https://via.placeholder.com/70x70">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous"
+    referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://bootswatch.com/4/journal/bootstrap.min.css" />
   <link rel="stylesheet" href="https://unpkg.com/mvp.css">
   <style>
     body.darkMode {
@@ -43,6 +49,7 @@
   <title>Document</title>
 
   <script>
+
     function toggleDarkMode() {
       let bodyTag = document.getElementsByTagName('body')[0];
       let toggleTag = document.getElementById('colorToggle');
@@ -54,9 +61,15 @@
         bodyTag.classList.replace('darkMode', 'lightMode');
         toggleTag.innerHTML = 'Dark Mode';
       }
+
+      // Save the new mode to local storage
+      localStorage.setItem('darkMode', bodyTag.classList.contains('darkMode'));
     }
 
     function handleDarkMode() {
+
+
+
       let bodyTag = document.getElementsByTagName('body')[0];
       let toggleTag = document.getElementById('colorToggle');
       if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -79,12 +92,23 @@
         <li>Menu Item 1</li>
         <li><a href="#">Menu Item 2</a></li>
         <li><a href="#" onClick="toggleDarkMode();" id="colorToggle">Dark Mode</a></li>
-        <li><a href="#">Dropdown Menu Item</a>
+
+
+        <li><a href="#">Account</a>
           <ul>
-            <li><a href="#">Sublink with a long name</a></li>
-            <li><a href="#">Short sublink</a></li>
+
+
+            <% if(!user){ %>
+              <li><a href="/login">Login</a></li>
+              <li><a href="/register">Register</a></li>
+              <% } else{ %>
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/logout">Logout</a></li>
+
+                <% } %>
 
           </ul>
         </li>
       </ul>
     </nav>
+    <main>
