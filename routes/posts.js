@@ -1,12 +1,22 @@
 const express = require('express');
-const { addPost, getPosts } = require('../controllers/post');
+const {
+  addPost,
+  getPosts,
+  getPostsOfUser,
+  readPost,
+} = require('../controllers/post');
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  res.send('In Posts');
+const { ensureAuthenticated } = require('../config/auth');
+
+router.get('/new', ensureAuthenticated, (req, res) => {
+  res.render('posts/newPost');
 });
-router.post('/add', addPost);
+router.post('/new', ensureAuthenticated, addPost);
 router.get('/get', getPosts);
+router.get('/dashboard', getPostsOfUser);
+router.get('/read/:id', readPost);
+// router.get('/read/:id', readPost);
 
 module.exports = router;
