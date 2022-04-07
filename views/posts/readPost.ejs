@@ -1,0 +1,83 @@
+<%- include('../partials/header'); %>
+  <section class="mt-0">
+
+    <h3>
+      <%= post.title %>
+        <span><sup>
+            <%= post.category %>
+          </sup></span>
+    </h3>
+
+    <p>
+      <%= post.description %>
+
+        <% var name=post.author %>
+
+          <% const name2=name.charAt(0).toUpperCase() + name.slice(1); %>
+
+            <% var name3=name2.substring(0, name2.lastIndexOf("@"));%>
+
+              <footer><i> Author Name:- <%= name3 %> </i></footer>
+
+              <!-- Shorten the date -->
+
+              <% const options={ weekday: 'long' , year: 'numeric' , month: 'long' , day: 'numeric' };%>
+
+                <footer><i> Date:- <%= post.createdAt.toLocaleDateString('en-US', options); %></i></footer>
+  </section>
+
+  <hr>
+  <article>
+    <h2>Replies</h2>
+    <section>
+      <form action="/comment/<%= post._id %>/add" method="POST">
+        <header>
+          <h2>Post Your Reply</h2>
+        </header>
+        <label for="textarea1">Textarea label:</label>
+        <textarea cols="40" rows="5" id="textarea1" name="comment" placeholder="Write something here"></textarea>
+        <button type="submit">Post</button>
+      </form>
+    </section>
+    <br>
+
+    <!-- Comments -->
+
+
+    <section>
+      <% comments.forEach(comment=> { %>
+
+        <!-- Shorten The Author Name -->
+        <% var name=comment.author %>
+
+          <% const name2=name.charAt(0).toUpperCase() + name.slice(1); %>
+
+            <% var name3=name2.substring(0, name2.lastIndexOf("@"));%>
+
+              <!-- Shorten the date -->
+
+              <% const dateOptions={ weekday: 'long' , year: 'numeric' , month: 'long' , day: 'numeric' };%>
+
+
+                <aside>
+                  <p> <sup>
+                      <%= name3 %>
+                    </sup> <sup>
+                      <%= comment.createdAt.toLocaleDateString('en-US', dateOptions); %>
+                    </sup></p>
+                  <h4>
+                    <%= comment.comment %>
+                  </h4>
+
+                </aside>
+                <% }) %>
+    </section>
+
+
+
+
+
+  </article>
+
+
+  <%- include('../partials/footer'); %>

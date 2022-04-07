@@ -1,0 +1,50 @@
+<%- include('partials/header'); %>
+
+
+  <section>
+    <header>
+      <h2>Hello, <%= name.substring(0, name.lastIndexOf("@")).toUpperCase(); %>
+      </h2>
+
+      <h4>New Post</h4>
+
+      <p><a href="/post/new" "><em>Start Writing
+                  ↗</em></a></p>
+    </header>
+    <header>
+      <h2>All Of Your Posts</h2>
+
+          <!-- <h3>New Post</h3> -->
+    </header>
+
+          <!-- <header>
+            <h2>Trending Posts</h2>
+          </header> -->
+
+          <% posts.forEach(post=> { %>
+            <aside>
+              <sup>
+                <%= post.category %>
+              </sup>
+              <span><a href=" #" "><i class=" fa-solid fa-trash"></i>
+        </a></span>
+      <h3>
+        <%= post.title %>
+      </h3>
+      <p>
+        <%= post.description.substring(0, 50) + "..." ; %>
+      </p>
+
+      <p><small>
+          <%= post.description.substring(25, 50) + "..." ; %>
+        </small></p>
+      <a href="#"><i>Read More &rarr;</i></a>
+      </aside>
+      <% }) %>
+
+  </section>
+
+  <a href="/logout" class="btn btn-secondary">Logout</a>
+
+
+  <%- include('partials/footer'); %>

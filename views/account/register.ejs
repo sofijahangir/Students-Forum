@@ -1,0 +1,29 @@
+<%- include('../partials/header'); %>
+
+  <section>
+
+      <form action="/register" method="POST">
+        <header>
+          <h4>Register </h4>
+          <%- include('../partials/messages'); %>
+
+
+
+
+            <!-- <a href=""><img src="https://cdn-icons-png.flaticon.com/512/300/300221.png" height="30" alt="Google"></a>
+            <a href=""><img src="https://cdn-icons-png.flaticon.com/512/1051/1051377.png" height="30" alt="Github"></a> -->
+
+        </header>
+        <!-- <label for="input1">Name :</label>
+      <input type="text" id="name" name="name" size="20" placeholder="Enter your name"> -->
+        <label for="input1">Email :</label>
+        <input type="text" id="email" name="username" size=" 20" placeholder="Enter your  email"
+          value="<%= typeof username != 'undefined' ? username : '' %>">
+        <label for="input1">Password :</label>
+        <input type="password" id="password" name="password" size="20" placeholder="Password"
+          value="<%= typeof password != 'undefined' ? password : '' %>">
+
+        <button type="submit">Sign Up</button>
+      </form>
+  </section>
+  <%- include('../partials/footer'); %>
