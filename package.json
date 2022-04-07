@@ -4,7 +4,7 @@
   "description": "An online forum for students of Kashmir University",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "nodemon server.js",
     "dev": "nodemon server.js -e js,ejs,css,json,html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
