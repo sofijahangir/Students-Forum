@@ -7,30 +7,27 @@ const User = require('../models/user');
 
 module.exports = function (passport) {
   passport.use(
-    new LocalStrategy(
-      { usernameField: 'username' },
-      (username, password, done) => {
-        // Match user
-        User.findOne({
-          username: username,
-        }).then((user) => {
-          if (!user) {
-            return done(null, false, {
-              message: 'That email is not registered',
-            });
-          }
-
-          // Match password
-          bcrypt.compare(password, user.password, (err, isMatch) => {
-            if (err) throw err;
-            if (isMatch) {
-              return done(null, user);
-            }
-            return done(null, false, { message: 'Password incorrect' });
+    new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
+      // Match user
+      User.findOne({
+        email: email,
+      }).then((user) => {
+        if (!user) {
+          return done(null, false, {
+            message: 'That email is not registered',
           });
+        }
+
+        // Match password
+        bcrypt.compare(password, user.password, (err, isMatch) => {
+          if (err) throw err;
+          if (isMatch) {
+            return done(null, user);
+          }
+          return done(null, false, { message: 'Password incorrect' });
         });
-      }
-    )
+      });
+    })
   );
   passport.serializeUser(function (user, done) {
     done(null, user.id);

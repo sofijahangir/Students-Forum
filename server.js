@@ -9,6 +9,8 @@ const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 
 const passport = require('passport');
+const partials = require('express-partials');
+const fs = require('fs');
 const postRoutes = require('./routes/posts');
 const Posts = require('./models/posts');
 const Comments = require('./models/comments');
@@ -21,16 +23,22 @@ const commentRoutes = require('./routes/comments');
 // Passport Config
 require('./config/passport-config')(passport);
 
+const server = express();
+
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
 
+const myCss = fs.readFileSync('./views/partials/css/style.css', 'utf8');
+
 // EJS
+
 // app.use(expressLayouts);
 app.set('view engine', 'ejs');
+app.use(partials());
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(methodOverride('_method'));
 
@@ -84,14 +92,12 @@ app.get('/', async (req, res) => {
   const comments = await Comments.find().sort({ createdAt: 'desc' });
 
   // console.log(comments);
-  res.render('index', { posts, comments });
+  res.render('index', {
+    posts,
+    comments,
+    myCss: myCss,
+  });
 });
-// app.get('/comments/get/:id', async (req, res) => {
-//   // fetch all the posts
-//   const comments = await Posts.find().sort({ createdAt: 'desc' });
-
-//   res.render('index', { comments });
-// });
 
 // Logout routes
 app.get('/logout', (req, res) => {

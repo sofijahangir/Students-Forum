@@ -1,114 +1,218 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <!-- Required meta tags -->
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <title>Forum</title>
+  <meta name="keywords" content="HTML5 Template">
+  <meta name="description" content="Forum - Responsive HTML5 Template">
+  <meta name="author" content="Forum">
+  <link rel="shortcut icon" href="favicon/favicon.ico">
+  <meta name="format-detection" content="telephone=no">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="/css/style.css" rel="stylesheet" type="text/css">
+  <%- include('./css/style'); %>
 
-  <!-- MVP CSS -->
-  <link rel="icon" href="https://via.placeholder.com/70x70">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous"
-    referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="https://bootswatch.com/4/journal/bootstrap.min.css" />
-  <link rel="stylesheet" href="https://unpkg.com/mvp.css">
-  <style>
-    body.darkMode {
-      --color: #0097fc;
-      --color-accent: #0097fc4f;
-      --color-bg: #333;
-      --color-bg-secondary: #555;
-      --color-link: #0097fc;
-      --color-secondary: #e20de9;
-      --color-secondary-accent: #e20de94f;
-      --color-shadow: #bbbbbb20;
-      --color-table: #0097fc;
-      --color-text: #f7f7f7;
-      --color-text-secondary: #aaa;
-    }
-
-    body.lightMode {
-      --color: #118bee;
-      --color-accent: #118bee15;
-      --color-bg: #fff;
-      --color-bg-secondary: #e9e9e9;
-      --color-link: #118bee;
-      --color-secondary: #920de9;
-      --color-secondary-accent: #920de90b;
-      --color-shadow: #f4f4f4;
-      --color-table: #118bee;
-      --color-text: #000;
-      --color-text-secondary: #999;
-    }
-
-  </style>
-
-  <title>Document</title>
-
-  <script>
-
-    function toggleDarkMode() {
-      let bodyTag = document.getElementsByTagName('body')[0];
-      let toggleTag = document.getElementById('colorToggle');
-
-      if (bodyTag.classList.contains('lightMode')) {
-        bodyTag.classList.replace('lightMode', 'darkMode');
-        toggleTag.innerHTML = 'Light Mode';
-      } else {
-        bodyTag.classList.replace('darkMode', 'lightMode');
-        toggleTag.innerHTML = 'Dark Mode';
-      }
-
-      // Save the new mode to local storage
-      localStorage.setItem('darkMode', bodyTag.classList.contains('darkMode'));
-    }
-
-    function handleDarkMode() {
-
-
-
-      let bodyTag = document.getElementsByTagName('body')[0];
-      let toggleTag = document.getElementById('colorToggle');
-      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        bodyTag.classList.add('darkMode');
-        toggleTag.innerHTML = 'Light Mode';
-      } else {
-        bodyTag.classList.add('lightMode');
-        toggleTag.innerHTML = 'Dark Mode';
-      }
-    }
-
-    window.onload = handleDarkMode;
-  </script>
 </head>
 <body>
-  <header>
-    <nav>
-      <a href="/"><img alt="Logo" src="https://cdn-icons-png.flaticon.com/512/2752/2752467.png" height="70"></a>
-      <ul>
-        <li>Menu Item 1</li>
-        <li><a href="#">Menu Item 2</a></li>
-        <li><a href="#" onClick="toggleDarkMode();" id="colorToggle">Dark Mode</a></li>
+  <!-- tt-mobile menu -->
+  <nav class="panel-menu" id="mobile-menu">
+    <ul>
 
+    </ul>
+    <div class="mm-navbtn-names">
+      <div class="mm-closebtn">
+        Close
+        <div class="tt-icon">
+          <svg>
+            <use xlink:href="#icon-cancel"></use>
+          </svg>
+        </div>
+      </div>
+      <div class="mm-backbtn">Back</div>
+    </div>
+  </nav>
+  <header id="tt-header">
+    <div class="container">
+      <div class="row tt-row no-gutters">
+        <div class="col-auto">
+          <!-- toggle mobile menu -->
+          <a class="toggle-mobile-menu" href="#">
+            <svg class="tt-icon">
+              <use xlink:href="#icon-menu_icon"></use>
+            </svg>
+          </a>
+          <!-- /toggle mobile menu -->
+          <!-- logo -->
+          <div class="tt-logo tt-desktop-menu">
+            <!-- <a href="/"><img src="./idea.png" alt=""></a> -->
+            <a href="/"><span>Forum</span></a>
+          </div>
+          <!-- /logo -->
+          <!-- desctop menu -->
+          <div class="tt-desktop-menu">
+            <nav>
+              <ul>
+                <li><a href="page-categories.html"><span>Categories</span></a></li>
+                <li><a href="page-tabs.html"><span>Trending</span></a></li>
+                <li><a href="/post/new"><span>New</span></a></li>
+                <li>
+                  <a href="page-single-user.html"><span>Pages</span></a>
+                  <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="page-single-topic.html">Single Topic</a></li>
+                    <li><a href="page-create-topic.html">Create Topic</a></li>
+                    <li><a href="page-single-user.html">Single User Activity</a></li>
+                    <li><a href="page-single_threads.html">Single User Threads</a></li>
+                    <li><a href="page-single_replies.html">Single User Replies</a></li>
+                    <li><a href="page-single_followers.html">Single User Followers</a></li>
+                    <li><a href="page-single_categories.html">Single User Categories</a></li>
+                    <li><a href="page-single_settings.html">Single User Settings</a></li>
+                    <li><a href="page-signup.html">Sign up</a></li>
+                    <li><a href="page-login.html">Log in</a></li>
+                    <li><a href="page-categories.html">Categories</a></li>
+                    <li><a href="page-categories-single.html">Single Category</a></li>
+                    <li><a href="page-tabs.html">About</a></li>
+                    <li><a href="page-tabs_guidelines.html">Guidelines</a></li>
+                    <li><a href="_demo_modal-advancedSearch.html">Advanced Search</a></li>
+                    <li><a href="error404.html">Error 404</a></li>
+                    <li><a href="_demo_modal-age-confirmation.html">Age Verification</a></li>
+                    <li><a href="_demo_modal-level-up.html">Level up Notification</a></li>
+                    <li><a href="messages-page.html">Message</a></li>
+                    <li><a href="messages-compose.html">Message Compose</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </nav>
+          </div>
+          <!-- /desctop menu -->
+          <!-- tt-search -->
+          <div class="tt-search">
+            <!-- toggle -->
+            <button class="tt-search-toggle" data-toggle="modal" data-target="#modalAdvancedSearch">
+              <svg class="tt-icon">
+                <use xlink:href="#icon-search"></use>
+              </svg>
+            </button>
+            <!-- /toggle -->
+            <form class="search-wrapper">
+              <div class="search-form">
+                <input type="text" class="tt-search__input" placeholder="Search">
+                <button class="tt-search__btn" type="submit">
+                  <svg class="tt-icon">
+                    <use xlink:href="#icon-search"></use>
+                  </svg>
+                </button>
+                <button class="tt-search__close">
+                  <svg class="tt-icon">
+                    <use xlink:href="#cancel"></use>
+                  </svg>
+                </button>
+              </div>
+              <div class="search-results">
+                <div class="tt-search-scroll">
+                  <ul>
+                    <li>
+                      <a href="page-single-topic.html">
+                        <h6 class="tt-title">Rdr2 secret easter eggs</h6>
+                        <div class="tt-description">
+                          Here’s what I’ve found in Red Dead Redem..
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="page-single-topic.html">
+                        <h6 class="tt-title">Top 10 easter eggs in Red Dead Rede..</h6>
+                        <div class="tt-description">
+                          You can find these easter eggs in Red Dea..
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="page-single-topic.html">
+                        <h6 class="tt-title">Red Dead Redemtion: Arthur Morgan..</h6>
+                        <div class="tt-description">
+                          Here’s what I’ve found in Red Dead Redem..
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="page-single-topic.html">
+                        <h6 class="tt-title">Rdr2 secret easter eggs</h6>
+                        <div class="tt-description">
+                          Here’s what I’ve found in Red Dead Redem..
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="page-single-topic.html">
+                        <h6 class="tt-title">Top 10 easter eggs in Red Dead Rede..</h6>
+                        <div class="tt-description">
+                          You can find these easter eggs in Red Dea..
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="page-single-topic.html">
+                        <h6 class="tt-title">Red Dead Redemtion: Arthur Morgan..</h6>
+                        <div class="tt-description">
+                          Here’s what I’ve found in Red Dead Redem..
+                        </div>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <button type="button" class="tt-view-all" data-toggle="modal" data-target="#modalAdvancedSearch">Advanced Search</button>
+              </div>
+            </form>
+          </div>
+          <!-- /tt-search -->
+        </div>
 
-        <li><a href="#">Account</a>
-          <ul>
+        <!-- Conditional Rendering of Login And Dashboard -->
+        <% if(!user){ %>
+          <div class="col-auto ml-auto">
+            <div class="tt-account-btn">
+              <a href="/login" class="btn btn-primary">Log in</a>
+              <a href="/register" class="btn btn-secondary">Sign up</a>
+            </div>
+          </div>
+          <% } else{ %>
+            <div class="col-auto ml-auto">
+              <div class="tt-user-info d-flex justify-content-center">
+                <a href="#" class="tt-btn-icon">
+                  <i class="tt-icon"><svg>
+                      <use xlink:href="#icon-notification"></use>
+                    </svg></i>
+                </a>
+                <div class="tt-avatar-icon tt-size-md">
+                  <% var authName=user.name %>
+                    <% const nameIcon=authName.charAt(0).toLowerCase(); %>
+                      <i class="tt-icon"><svg>
+                          <use xlink:href="#icon-ava-<%= nameIcon %>"></use>
+                        </svg></i>
+                </div>
+                <div class="custom-select-01">
 
+                  <select onchange="location = this.value;">
+                    <option value="">
 
-            <% if(!user){ %>
-              <li><a href="/login">Login</a></li>
-              <li><a href="/register">Register</a></li>
-              <% } else{ %>
-                <li><a href="/dashboard">Dashboard</a></li>
-                <li><a href="/logout">Logout</a></li>
+                      <%var name=user.name.split(' ')[0] %>
+                          <%= name %>
+                    </option>
+                    <option value="dashboard">
+                      Dashbaord
+                      </option>
+                    <option value=" logout">
+                      <button>New Thing</button>
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <% } %>
 
-                <% } %>
+              <!-- Conditional Rendering of Login And Dashboard -->
 
-          </ul>
-        </li>
-      </ul>
-    </nav>
-    <main>
+      </div>
+    </div>
+  </header>

@@ -20,78 +20,52 @@ const getRegisterPage = async (req, res) => {
 };
 
 const registerUser = async (req, res) => {
-  // Create a new user using passport-local-mongoose
-  const { username, password } = req.body;
+  const { name, email, phone, password } = req.body;
   const errors = [];
-
-  // Check email is valid
-  if (!validator.validate(username)) {
-    errors.push({ msg: 'Please enter a valid email address' });
+  if (!name || !email || !password || !phone) {
+    errors.push({ msg: 'Please enter all fields' });
   }
-
-  // Check required fields
-  if (!username || !password) {
-    errors.push({ msg: 'Please fill  all fields' });
-  }
-
-  // Check password length
   if (password.length < 6) {
-    errors.push({ msg: 'Password should be at least 6 characters' });
+    errors.push({ msg: 'Password must be at least 6 characters' });
   }
-
-  // Check if there are errors
+  if (!validator.validate(email)) {
+    errors.push({ msg: 'Please enter a valid email' });
+  }
   if (errors.length > 0) {
     res.render('account/register', {
       errors,
-      username,
+      name,
+      email,
+      phone,
       password,
     });
-  } else {
-    // If no errors, create the user
-    User.findOne({ username: username }, (err, user) => {
-      if (user) {
-        errors.push({ msg: 'Email already exists' });
-        res.render('account/register', {
-          errors,
-          username,
-          password,
-        });
-      } else {
-        User.findOne({ username: username }).then((user) => {
-          if (user) {
-            errors.push({ msg: 'Email already exists' });
-            res.render('account/register', {
-              errors,
-              username,
-              password,
-            });
-          } else {
-            const newUser = new User({
-              username,
-              password,
-            });
-
-            bcrypt.genSalt(10, (err, salt) => {
-              bcrypt.hash(newUser.password, salt, (err, hash) => {
-                if (err) throw err;
-                newUser.password = hash;
-                newUser
-                  .save()
-                  .then((user) => {
-                    req.flash(
-                      'success_msg',
-                      'You are now registered and can log in'
-                    );
-                    res.redirect('login');
-                  })
-                  .catch((err) => console.log(err));
-              });
-            });
-          }
-        });
-      }
+  }
+  // Check if the user already exists
+  const user = await User.findOne({ email });
+  if (user) {
+    errors.push({ msg: 'Email already exists' });
+    res.render('account/register', {
+      errors,
+      name,
+      email,
+      phone,
+      password,
     });
   }
+  // If the user does not exist, create the user
+  const newUser = new User({
+    name,
+    email,
+    phone,
+    password,
+  });
+  // Hash the password
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(password, salt);
+  newUser.password = hashedPassword;
+  await newUser.save();
+  req.flash('success_msg', 'You are now registered and can log in');
+  res.redirect('/login');
 };
 
 const loginUser = async (req, res, next) => {

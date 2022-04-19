@@ -10,11 +10,11 @@ const addPost = async (req, res) => {
   // Fetch userId from session
   const userId = req.session.passport.user;
   const author = await User.findById(userId);
-  console.log(author.username);
+  console.log(author.name);
   const { title, description, category, image } = req.body;
   const newPost = new Post({
     userId,
-    author: author.username,
+    author: author.name,
     title,
     description,
     category,

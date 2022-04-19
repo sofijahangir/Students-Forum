@@ -18,11 +18,11 @@ const postComment = async (req, res) => {
   const newComment = new Comment({
     userId,
     postId,
-    author: user.username,
+    author: user.name,
     comment,
   });
   // console.log(newComment.comment);
-  const commentDesc = newComment.comment;
+  // const commentDesc = newComment.comment;
   try {
     // Find the post by postId and add the comment to the post
     const post = await Post.findById(postId);

@@ -21,7 +21,7 @@ router.get('/dashboard', ensureAuthenticated, async (req, res) => {
     const result = await User.findById(userId).populate('posts');
     const { posts } = result;
 
-    res.render('dashboard', {
+    res.render('Dashboard/dashboard', {
       posts,
       name: req.user.username,
     });
