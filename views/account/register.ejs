@@ -6,45 +6,104 @@
         <!-- <h1>bar</h1> -->
         <% } %>
 
-          <section>
+          <!-- Register Form -->
+          <main id="tt-pageContent" class="tt-offset-none">
+            <br>
+            <div class="container">
+              <div class="tt-loginpages-wrapper">
+                <div class="tt-loginpages">
+                  <a href="/" class="tt-block-title">
+                    <img src="images/logo.png" alt="">
+                    <div class="tt-title">
+                      Welcome to Forum19
+                    </div>
+                    <div class="tt-description">
+                      Join the forum to unlock true power of community.
+                    </div>
+                    <div class="tt-description">
+                      <strong>
+                        <%- include('../partials/messages'); %>
 
-            <form action="/register" method="POST">
+                      </strong>
 
-
-
-
-              <!-- <a href=""><img src="https://cdn-icons-png.flaticon.com/512/300/300221.png" height="30" alt="Google"></a>
-            <a href=""><img src="https://cdn-icons-png.flaticon.com/512/1051/1051377.png" height="30" alt="Github"></a> -->
-              <div class="container">
-                <br>
-                <%- include('../partials/messages'); %>
-                  <h2>Registration Form</h2>
-
-                  <div class="form-group">
-                    <label for="firstname"> Name</label>
-                    <input type="text" class="form-control" id="exampleInputfirstname" name="name">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="Email1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
-                  </div>
-                  <div class="form-group">
-                    <label for="phoneno">Phone Number</label>
-                    <input type="number" class="form-control" id="exampleInputphoneno" name="phone">
-                  </div>
-                  <div class="form-group">
-                    <label for="Password">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword" name="password">
-                  </div>
-                  <br>
-                  <button type="submit" class="btn btn-primary" name="create">Sign up</button>
+                    </div>
+                  </a>
+                  <form action="/register" method="POST" class="form-default">
+                    <div class="form-group">
+                      <label for="loginUserName">Name</label>
+                      <input type="text" name="name" class="form-control" id="loginUserName" placeholder="Shahid Afzal">
+                    </div>
+                    <div class="form-group">
+                      <label for="loginUserName">Email</label>
+                      <input type="text" name="email" class="form-control" id="loginUserName" placeholder="test@email.com">
+                    </div>
+                    <div class="form-group">
+                      <label for="loginUserName">Phone</label>
+                      <input type="number" name="phone" class="form-control" id="loginUserName" placeholder="9797071502">
+                    </div>
+                    <div class="form-group">
+                      <label for="loginUserPassword">Password</label>
+                      <input type="password" name="password" class=" form-control" id="loginUserPassword" placeholder="************">
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <div class="form-group">
+                          <div class="checkbox-group">
+                            <input type="checkbox" id="settingsCheckBox01" name="checkbox">
+                            <label for="settingsCheckBox01">
+                              <span class="check"></span>
+                              <span class="box"></span>
+                              <span class="tt-text">Remember me</span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col ml-auto text-right">
+                        <a href="#" class="tt-underline">Forgot Password</a>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <!-- <a href="#" class="btn btn-secondary btn-block">Log in</a> -->
+                      <button type="submit" class="btn btn-secondary btn-block">Create my account</button>
+                    </div>
+                    <p>Or signup with social network</p>
+                    <div class="row">
+                      <div class="col">
+                        <div class="form-group">
+                          <a href="#" class="btn btn-color01 btn-secondary btn-block">
+                            <i>
+                              <svg class="icon">
+                                <use xlink:href="#facebook-f-brands"></use>
+                              </svg>
+                            </i>
+                            Facebook
+                          </a>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-group">
+                          <a href="#" class="btn btn-color02 btn-block">
+                            <i>
+                              <svg class="icon">
+                                <use xlink:href="#twitter-brands"></use>
+                              </svg>
+                            </i>
+                            Twitter
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <p>Already have an account? <a href="/login" class="tt-underline">Login here</a></p>
+                    <div class="tt-notes">
+                      By Logging in, signing in or continuing, I agree to
+                      Forum19’s <a href="#" class="tt-underline">Terms of Use</a> and <a href="#" class="tt-underline">Privacy Policy.</a>
+                    </div>
+                  </form>
+                </div>
               </div>
-            </form>
-          </section>
+            </div>
+          </main>
+          <!-- Register Form End -->
 
-          <br>
-          <br>
-          <br>
-          <br>
+
           <%- include('../partials/footer'); %>
