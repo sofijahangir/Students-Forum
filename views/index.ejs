@@ -6,116 +6,173 @@
         <div class="tt-topic-list">
           <br>
 
-          <!-- Login Popup Conditional Rendering  -->
-          <% if(!user){ %>
+          <!-- Events -->
 
-            <div class="tt-item tt-item-popup">
-              <div class="tt-col-avatar">
-                <svg class="tt-icon">
-                  <use xlink:href="#icon-ava-f"></use>
-                </svg>
-              </div>
-              <div class="tt-col-message">
-                Looks like you are new here. Register for free, learn and contribute.
-              </div>
-              <div class="tt-col-btn">
-                <button type="button" class="btn btn-primary">Log in</button>
-                <button type="button" class="btn btn-secondary">Sign up</button>
-                <button type="button" class="btn-icon">
+
+          <% events.forEach(event=> { %>
+            <!-- <div class="tt-list-header">
+              <div class="tt-col-topic">Events</div>
+
+
+              <div class="tt-col-value">Activity</div>
+            </div> -->
+
+            <!-- Event Id -->
+            <%var id=event._id %>
+              <!-- Event Id -->
+
+              <div class="tt-item tt-item-popup">
+                <div class="tt-col-avatar">
                   <svg class="tt-icon">
-                    <use xlink:href="#icon-cancel"></use>
+                    <use xlink:href="#icon-ava-e"></use>
                   </svg>
-                </button>
-              </div>
-            </div>
-
-
-            <% } else{ %>
-              <!-- There is nothing to do -->
-
-              <% } %>
-                <!-- Login Popup End -->
-
-
-
-                <div class="tt-list-header">
-                  <div class="tt-col-topic">Topic</div>
-                  <div class="tt-col-category">Category</div>
-                  <div class="tt-col-value hide-mobile">Likes</div>
-                  <div class="tt-col-value hide-mobile">Replies</div>
-                  <div class="tt-col-value hide-mobile">Views</div>
-                  <div class="tt-col-value">Activity</div>
                 </div>
-                <!-- <div class="tt-topic-alert tt-alert-default" role="alert">
+                <div class="tt-col-message">
+                  <strong>
+                    <%= event.title %>
+                  </strong>
+
+                </div>
+
+
+                <div class="tt-col-btn">
+
+
+                  <button type="button" class="btn btn-primary"
+                    onclick="window.location.href = 'http://localhost:3000/event/read/<%= id; %>';">View
+                    Event</button>
+                </div>
+              </div>
+
+              <br>
+
+              <% }) %>
+
+
+                <!-- Events End -->
+                <br>
+
+
+                <!-- Check if the user is admin -->
+
+
+                <!-- Login Popup Conditional Rendering  -->
+                <% if(!user){ %>
+
+                  <div class="tt-item tt-item-popup">
+                    <div class="tt-col-avatar">
+                      <svg class="tt-icon">
+                        <use xlink:href="#icon-ava-f"></use>
+                      </svg>
+                    </div>
+                    <div class="tt-col-message">
+                      Looks like you are new here. Register for free, learn and contribute.
+                    </div>
+                    <div class="tt-col-btn">
+                      <button type="button" class="btn btn-primary" onclick="window.location.href = 'http://localhost:3000/login';">Log
+                        in</button>
+                      <button type="button" class="btn btn-secondary"
+                        onclick="window.location.href = 'http://localhost:3000/register';">Sign
+                        up</button>
+                      <button type="button" class="btn-icon">
+                        <svg class="tt-icon">
+                          <use xlink:href="#icon-cancel"></use>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+
+
+                  <% } else{ %>
+                    <!-- There is nothing to do -->
+
+                    <% } %>
+                      <!-- Login Popup End -->
+
+                      <!-- Events -->
+
+                      <!-- Events -->
+
+
+
+                      <div class="tt-list-header">
+                        <div class="tt-col-topic">Topic</div>
+                        <div class="tt-col-category">Category</div>
+                        <div class="tt-col-value hide-mobile">Likes</div>
+                        <div class="tt-col-value hide-mobile">Replies</div>
+                        <div class="tt-col-value hide-mobile">Views</div>
+                        <div class="tt-col-value">Activity</div>
+                      </div>
+                      <!-- <div class="tt-topic-alert tt-alert-default" role="alert">
             <a href="#" target="_blank">4 new posts</a> are added recently, click here to load them.
           </div> -->
-    
 
 
 
 
 
 
-                <!-- Render Posts Dynamically -->
 
-                <% posts.forEach(post=> { %>
-                  <!-- Posts -->
+                      <!-- Render Posts Dynamically -->
 
-                  <!-- Author Name -->
-                  <% var authName=post.author %>
-                    <% const name=authName.charAt(0).toLowerCase(); %>
-                      <div class="tt-item tt-itemselect">
-                        <div class="tt-col-avatar">
-                          <svg class="tt-icon">
-                            <use xlink:href="#icon-ava-<%= name %>"></use>
-                          </svg>
-                        </div>
+                      <% posts.forEach(post=> { %>
+                        <!-- Posts -->
 
-                        <!-- Post Id -->
-                        <%var id=post._id %>
-                          <!-- Post Id -->
-                          <div class="tt-col-description">
-                            <h6 class="tt-title"><a href="post/read/<%= id; %>">
+                        <!-- Author Name -->
+                        <% var authName=post.author %>
+                          <% const name=authName.charAt(0).toLowerCase(); %>
+                            <div class="tt-item tt-itemselect">
+                              <div class="tt-col-avatar">
                                 <svg class="tt-icon">
-                                  <use xlink:href="#icon-pinned"></use>
+                                  <use xlink:href="#icon-ava-<%= name %>"></use>
                                 </svg>
+                              </div>
 
-                                <%= post.title %>
-                              </a></h6>
-                            <div class="row align-items-center no-gutters">
-                              <div class="col-11">
-                                <ul class="tt-list-badge">
-                                  <li class="show-mobile"><a href="#"><span class="tt-color01 tt-badge">politics</span></a></li>
-                                  <li><a href="#"><span class="tt-badge">contests</span></a></li>
-                                  <li><a href="#"><span class="tt-badge">authors</span></a></li>
-                                </ul>
-                              </div>
-                              <div class="col-1 ml-auto show-mobile">
-                                <div class="tt-value">1h</div>
-                              </div>
+                              <!-- Post Id -->
+                              <%var id=post._id %>
+                                <!-- Post Id -->
+                                <div class="tt-col-description">
+                                  <h6 class="tt-title"><a href="post/read/<%= id; %>">
+                                      <svg class="tt-icon">
+                                        <use xlink:href="#icon-pinned"></use>
+                                      </svg>
+
+                                      <%= post.title %>
+                                    </a></h6>
+                                  <div class="row align-items-center no-gutters">
+                                    <div class="col-11">
+                                      <ul class="tt-list-badge">
+                                        <li class="show-mobile"><a href="#"><span class="tt-color01 tt-badge">politics</span></a></li>
+                                        <li><a href="#"><span class="tt-badge">contests</span></a></li>
+                                        <li><a href="#"><span class="tt-badge">authors</span></a></li>
+                                      </ul>
+                                    </div>
+                                    <div class="col-1 ml-auto show-mobile">
+                                      <div class="tt-value">1h</div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="tt-col-category"><span class="tt-color01 tt-badge">
+                                    <%= post.category %>
+                                  </span></div>
+                                <div class="tt-col-value hide-mobile">985</div>
+                                <div class="tt-col-value tt-color-select hide-mobile">502</div>
+                                <div class="tt-col-value hide-mobile">15.1k</div>
+                                <div class="tt-col-value hide-mobile">1h</div>
                             </div>
-                          </div>
-                          <div class="tt-col-category"><span class="tt-color01 tt-badge">
-                              <%= post.category %>
-                            </span></div>
-                          <div class="tt-col-value hide-mobile">985</div>
-                          <div class="tt-col-value tt-color-select hide-mobile">502</div>
-                          <div class="tt-col-value hide-mobile">15.1k</div>
-                          <div class="tt-col-value hide-mobile">1h</div>
-                      </div>
-                      <!-- Posts End -->
+                            <!-- Posts End -->
 
-                      <% }) %>
+                            <% }) %>
 
 
 
-                        <div class="tt-row-btn">
-                          <button type="button" class="btn-icon js-topiclist-showmore">
-                            <svg class="tt-icon">
-                              <use xlink:href="#icon-load_lore_icon"></use>
-                            </svg>
-                          </button>
-                        </div>
+                              <div class="tt-row-btn">
+                                <button type="button" class="btn-icon js-topiclist-showmore">
+                                  <svg class="tt-icon">
+                                    <use xlink:href="#icon-load_lore_icon"></use>
+                                  </svg>
+                                </button>
+                              </div>
         </div>
       </div>
     </main>
