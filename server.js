@@ -8,20 +8,26 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 
+const path = require('path');
+
 const passport = require('passport');
 const partials = require('express-partials');
 const fs = require('fs');
 const postRoutes = require('./routes/posts');
 const Posts = require('./models/posts');
 const Comments = require('./models/comments');
+const Events = require('./models/events');
 const User = require('./models/user');
 const mongoDb = require('./config/db');
 const userRoutes = require('./routes/user');
 const indexPageRoutes = require('./routes/index');
 const commentRoutes = require('./routes/comments');
+const eventRoutes = require('./routes/events');
 
 // Passport Config
 require('./config/passport-config')(passport);
+
+const { ensureAuthenticated, ensureIsAdmin } = require('./config/auth');
 
 const server = express();
 
@@ -41,6 +47,10 @@ app.use(partials());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(methodOverride('_method'));
+
+// app.use(express.static('public'));
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 mongoDb();
 const store = new MongoDBStore({
@@ -84,6 +94,7 @@ app.use('/', userRoutes);
 app.use('/', indexPageRoutes);
 app.use('/post', postRoutes);
 app.use('/comment', commentRoutes);
+app.use('/event', eventRoutes);
 
 app.get('/', async (req, res) => {
   // fetch all the posts
@@ -91,10 +102,13 @@ app.get('/', async (req, res) => {
 
   const comments = await Comments.find().sort({ createdAt: 'desc' });
 
+  const events = await Events.find().sort({ createdAt: 'desc' });
+
   // console.log(comments);
   res.render('index', {
     posts,
     comments,
+    events,
     myCss: myCss,
   });
 });
