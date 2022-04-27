@@ -1,0 +1,69 @@
+<%- include('../partials/header'); %>
+
+  <main id="tt-pageContent">
+    <div class="container">
+      <div class="tt-wrapper-inner">
+        <h1 class="tt-title-border">
+          Create New Event
+        </h1>
+        <form class="form-default form-create-topic" action="/event/new" method="POST">
+          <div class="form-group">
+            <label for="inputTopicTitle">Event Title</label>
+            <div class="tt-value-wrapper">
+              <input type="text" name="title" class="form-control" id="inputTopicTitle" placeholder="Subject of your event" required>
+              <span class="tt-value-input">99</span>
+            </div>
+            <div class="tt-note">Describe your topic well, while keeping the subject as short as possible.</div>
+          </div>
+
+          <div class="pt-editor">
+            <h6 class="pt-title">Event Description</h6>
+
+            <div class="form-group">
+              <textarea name="description" class="form-control" rows="5" placeholder="Lets get started" required></textarea>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="inputTopicTitle">Event Category</label>
+                  <select class="form-control" name="category" required>
+
+                    <option value="General">General</option>
+                    <option value="Student">Student</option>
+                    <option value="Cultural">Cultural</option>
+                    <option value="Placement">Placement</option>
+                    <option value="Confrence">Confrence</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="inputTopicTitle">Where</label>
+                  <input type="text" name="location" class="form-control" id="inputTopicTitle" placeholder="Location of event" required>
+                </div>
+              </div>
+
+              <div class="col-md-8">
+                <div class="form-group">
+                  <label for="inputTopicTags">Date & Time (When) </label>
+                  <input type="datetime-local" name="dateAndTime" class="form-control" id="inputTopicTags"
+                    placeholder="Use comma to separate tags" required>
+                </div>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col-auto ml-md-auto">
+                <button type="submit" class="btn btn-secondary btn-width-lg">Create Event</button>
+
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+
+    </div>
+  </main>
+  <%- include('../partials/footer'); %>

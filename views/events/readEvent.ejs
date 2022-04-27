@@ -1,0 +1,126 @@
+<%- include('../partials/header'); %>
+
+  <!-- Page Content -->
+  <!-- Author Name -->
+  <% var authName=event.postedBy %>
+    <% const name=authName.charAt(0).toLowerCase(); %>
+      <!-- Author Name -->
+      <main id="tt-pageContent">
+        <div class="container">
+          <div class="tt-single-topic-list">
+            <div class="tt-item">
+              <div class="tt-single-topic">
+                <div class="tt-item-header">
+                  <div class="tt-item-info info-top">
+                    <div class="tt-avatar-icon">
+                      <i class="tt-icon"><svg>
+                          <use xlink:href="#icon-ava-<%= name %>"></use>
+                        </svg></i>
+                    </div>
+                    <div class="tt-avatar-title">
+                      <a href="#">
+                        <%= event.postedBy %>
+                      </a>
+                    </div>
+                    <a href="#" class="tt-info-time">
+                      <i class="tt-icon"><svg>
+                          <use xlink:href="#icon-time"></use>
+                          <!-- Date -->
+                          <% const options={year: 'numeric' , month: 'long' , day: 'numeric' };%>
+                            <!-- Date -->
+                        </svg></i>
+                      <%= event.createdAt.toLocaleDateString('en-US', options); %>
+                    </a>
+                  </div>
+                  <h3 class="tt-item-title">
+                    <a href="">
+                      <%= event.title %>
+                    </a>
+                  </h3>
+                  <div class="tt-item-tag">
+                    <ul class="tt-list-badge">
+                      <li><a href="#"><span class="tt-color03 tt-badge">
+                            <%= event.category %>
+                          </span></a></li>
+
+                    </ul>
+                  </div>
+                </div>
+                <div class="tt-item-description">
+                  <!-- Create Truncate Function -->
+
+                  <!-- Create Truncate Function -->
+                  <h6 class=" tt-title">
+                    <%= event.title %>
+                  </h6>
+                  <p>
+                    <%= event.description %>
+                  </p>
+                  <p>
+                    <strong>
+                      Where:- <%= event.location %>
+                    </strong>
+
+                  </p>
+                  <p>
+                    <strong>
+                      When:- <%= event.dateAndTime %>.
+                    </strong>
+
+                  </p>
+                  <p>
+
+                  </p>
+                  <!-- <h6 class="tt-title">How Does it Work?</h6> -->
+                  <p>
+
+                  </p>
+                </div>
+                <div class="tt-item-info info-bottom">
+                  <a href="#" class="tt-icon-btn">
+                    <i class="tt-icon"><svg>
+                        <use xlink:href="#icon-like"></use>
+                      </svg></i>
+                    <span class="tt-text">671</span>
+                  </a>
+                  <a href="#" class="tt-icon-btn">
+                    <i class="tt-icon"><svg>
+                        <use xlink:href="#icon-dislike"></use>
+                      </svg></i>
+                    <span class="tt-text">39</span>
+                  </a>
+                  <a href="#" class="tt-icon-btn">
+                    <i class="tt-icon"><svg>
+                        <use xlink:href="#icon-favorite"></use>
+                      </svg></i>
+                    <span class="tt-text">12</span>
+                  </a>
+                  <div class="col-separator"></div>
+                  <a href="#" class="tt-icon-btn tt-hover-02 tt-small-indent">
+                    <i class="tt-icon"><svg>
+                        <use xlink:href="#icon-share"></use>
+                      </svg></i>
+                  </a>
+
+                </div>
+              </div>
+            </div>
+
+
+
+
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+      </main>
+
+
+
+      <%- include('../partials/footer'); %>
