@@ -6,16 +6,14 @@ const {
   registerUser,
   loginUser,
   logoutUser,
+  setUserRole,
+  deleteUser,
 } = require('../controllers/user');
-const {
-  ensureAuthenticated,
-  ensureNotAuthenticated,
-} = require('../config/auth');
+const { ensureAuthenticated } = require('../config/auth');
 
 const router = express.Router();
 
-// Prevent the user from loging in again if they are already logged in 
-
+// Prevent the user from loging in again if they are already logged in
 
 // Login Route ....
 
@@ -33,5 +31,12 @@ router.post('/login', loginUser);
 // Logout Handle
 
 router.get('/logout', logoutUser);
+
+// Set User Roles
+router.post('/user/setRole', ensureAuthenticated, setUserRole);
+router.get('/user/setRole', ensureAuthenticated, setUserRole);
+
+// delete user
+router.get('/user/delete/:id', ensureAuthenticated, deleteUser);
 
 module.exports = router;
