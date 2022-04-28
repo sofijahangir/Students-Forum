@@ -67,10 +67,23 @@ router.get('/dashboard/users', ensureAuthenticated, async (req, res) => {
 
     if (isAdmin) {
       // Get the list of all users without admin
-      const users = await Users.find({ isAdmin: false });
+      const users = await Users.find({});
+
+      // Total admins
+      const totalAdmins = await Users.find({ isAdmin: true });
+
+      const totalFaculty = await Users.find({ isFaculty: true });
+
+      // Total Students where both isAdmin and isFaculty are false
+      const totalStudents = await Users.find({
+        $and: [{ isAdmin: false }, { isFaculty: false }],
+      });
 
       res.render('Dashboard/userListDashboard', {
         users,
+        totalAdmins,
+        totalFaculty,
+        totalStudents,
       });
     }
 
