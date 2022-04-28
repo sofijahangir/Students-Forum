@@ -105,19 +105,7 @@
                   Logout
                 </a>
               </li>
-              <% if (user) { %>
 
-                <% if (user.isAdmin ) { %>
-                  <li class="app-sidebar__heading">Users and Roles</li>
-                  <li>
-                    <a href="/users" class="mm-active">
-                      <i class="metismenu-icon pe-7s-users"></i>
-                      Users
-                    </a>
-                    <% } %>
-
-
-                      <% } %>
 
             </ul>
           </div>
@@ -131,11 +119,11 @@
               <div class="card mb-3 widget-content bg-midnight-bloom">
                 <div class="widget-content-wrapper text-white">
                   <div class="widget-content-left">
-                    <div class="widget-heading">Total Users</div>
+                    <div class="widget-heading">Total Students</div>
                   </div>
                   <div class="widget-content-right">
                     <div class="widget-numbers text-white"><span>
-                        <%= users.length %>
+                        <%= totalStudents.length %>
 
                       </span></div>
                   </div>
@@ -151,7 +139,9 @@
                   <div class="widget-content-right">
 
                     <div class="widget-numbers text-white"><span>
-                        <%= users.length %>
+                        <!-- Get the total no of admins -->
+
+                        <%= totalAdmins.length %>
                       </span></div>
                   </div>
                 </div>
@@ -165,7 +155,7 @@
                   </div>
                   <div class="widget-content-right">
                     <div class="widget-numbers text-white"><span>
-                        <%= users.length %>
+                        <%= totalFaculty.length %>
                       </span></div>
                   </div>
                 </div>
@@ -227,28 +217,58 @@
                               </td>
 
                               <td class="text-center">
-                                <div class="badge badge-success">
-                                  <button class="btn-wide btn btn-success">Set as Admin</button>
 
-                                </div>
-                                <div class="badge badge-success">
-                                  <button class="btn-wide btn btn-success">Set as Faculty</button>
-                                </div>
+                                <!-- If user is faculty -->
+                                <% if(user.isSuperAdmin ){ %>
+                                  <div class="badge badge-danger">Super Admin</div>
+                                  <!-- If user is admin -->
+                                  <% }else if(user.isAdmin ){ %>
+                                    <div class="badge badge-warning">Admin</div>
+                                    <!-- If user is student -->
+                                    <% }else if(user.isFaculty ){ %>
+                                      <div class="badge badge-info">Faculty</div>
+                                      <!-- If user is student -->
+                                      <% } else if((!user.isAdmin) || (!user.isFaculty) ){ %>
+                                        <div class="badge badge-dark">Student</div>
+                                        <% } %>
+
+
+                                          <div class="badge badge-success">
+
+                                            <button
+                                              onclick="window.location.href = 'http://localhost:3000/user/setRole/?id=<%= user._id %>&role=admin';"
+                                              class="btn-wide btn btn-success">Set as
+                                              Admin</button>
+
+                                          </div>
+                                          <div class="badge badge-success">
+                                            <button
+                                              onclick="window.location.href = 'http://localhost:3000/user/setRole/?id=<%= user._id %>&role=faculty';"
+                                              class="btn-wide btn btn-success">Set as
+                                              Faculty</button>
+                                          </div>
+                                          <div class="badge badge-success">
+                                            <button
+                                              onclick="window.location.href = 'http://localhost:3000/user/setRole/?id=<%= user._id %>&role=null';"
+                                              class="btn-wide btn btn-success">Remove Both Roles
+                                            </button>
+                                          </div>
+
                               </td>
                               <td class="text-center">
 
                                 <button class="mr-2 btn-icon btn-icon-only btn btn-outline-primary"><i class="pe-7s-note btn-icon-wrapper">
                                   </i></button>
 
-                                <!-- <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"
-                                                                              onclick="window.location.href = 'http://localhost:3000/post/delete/<%= id; %>';"><i
-                                                                                  class="pe-7s-trash btn-icon-wrapper">
-                                                                              </i>
-                                                                          </button> -->
-                                <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger" onclick=deletePost();><i
-                                    class="pe-7s-trash btn-icon-wrapper">
+                                <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"
+                                  onclick="window.location.href = 'http://localhost:3000/user/delete/<%= id; %>';"><i
+                                    class="pe-7s-trash btn-icon-wrapper" alt="Delete User">
                                   </i>
                                 </button>
+                                <!-- <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger" onclick=deletePost();><i
+                                    class="pe-7s-trash btn-icon-wrapper">
+                                  </i>
+                                </button> -->
                               </td>
                             </tr>
 
