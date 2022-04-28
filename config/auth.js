@@ -26,4 +26,30 @@ module.exports = {
     }
     res.redirect('/');
   },
+  ensureIsFaculty: function (req, res, next) {
+    if (req.user.isFaculty) {
+      return next();
+    }
+    req.flash('error_msg', 'You are not authorized to view the resource');
+    res.redirect('/');
+  },
+  forwardIsFaculty: function (req, res, next) {
+    if (!req.user.isFaculty) {
+      return next();
+    }
+    res.redirect('/');
+  },
+  ensureBothAdminAndFaculty: function (req, res, next) {
+    if (req.user.isFaculty || req.user.isAdmin) {
+      return next();
+    }
+    req.flash('error_msg', 'You are not authorized to view the resource');
+    res.redirect('/');
+  },
+  forwardBothAdminAndFaculty: function (req, res, next) {
+    if (!req.user.isFaculty || !req.user.isAdmin) {
+      return next();
+    }
+    res.redirect('/');
+  },
 };
