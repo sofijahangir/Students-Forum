@@ -66,4 +66,11 @@ const getAllEvents = async (req, res) => {
   }
 };
 
-module.exports = { createEvent, getAllEvents, readEvent };
+// Delete Event
+const deleteEvent = async (req, res) => {
+  const eventId = req.params.id;
+  await Event.findByIdAndDelete(eventId);
+  res.redirect('/dashboard');
+};
+
+module.exports = { createEvent, getAllEvents, readEvent, deleteEvent };

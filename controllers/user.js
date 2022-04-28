@@ -89,6 +89,23 @@ const logoutUser = async (req, res) => {
   res.redirect('/login');
 };
 
+// set the user as admin or faculty
+const setUserRole = async (req, res) => {
+  const { userId, role } = req.body;
+  const user = await User.findById(userId);
+
+  // if role is admin
+  if (role === 'admin') {
+    user.isAdmin = true;
+  }
+  // if role is faculty
+  if (role === 'faculty') {
+    user.isFaculty = true;
+  }
+  await user.save();
+  res.status(200).send('User role updated');
+};
+
 module.exports = {
   getLoginPage,
   getRegisterPage,

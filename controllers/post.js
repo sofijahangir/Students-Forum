@@ -48,4 +48,11 @@ const getPostsOfUser = async (req, res) => {
   res.render('/dashboard', { posts });
 };
 
-module.exports = { addPost, getPosts, getPostsOfUser, readPost };
+// Delete Post
+const deletePost = async (req, res) => {
+  const postId = req.params.id;
+  await Post.findByIdAndDelete(postId);
+  res.redirect('/dashboard');
+};
+
+module.exports = { addPost, getPosts, getPostsOfUser, readPost, deletePost };
