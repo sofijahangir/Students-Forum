@@ -17,12 +17,16 @@ const postRoutes = require('./routes/posts');
 const Posts = require('./models/posts');
 const Comments = require('./models/comments');
 const Events = require('./models/events');
+const Likes = require('./models/likes');
+
 const User = require('./models/user');
 const mongoDb = require('./config/db');
 const userRoutes = require('./routes/user');
 const indexPageRoutes = require('./routes/index');
 const commentRoutes = require('./routes/comments');
 const eventRoutes = require('./routes/events');
+const likeRoutes = require('./routes/likes');
+const dislikeRoutes = require('./routes/dislikes');
 
 // Passport Config
 require('./config/passport-config')(passport);
@@ -95,6 +99,8 @@ app.use('/', indexPageRoutes);
 app.use('/post', postRoutes);
 app.use('/comment', commentRoutes);
 app.use('/event', eventRoutes);
+app.use('/like', likeRoutes);
+app.use('/dislike', dislikeRoutes);
 
 app.get('/', async (req, res) => {
   // fetch all the posts
