@@ -39,6 +39,12 @@ UserSchema.virtual('dislikes', {
   localField: '_id',
 });
 
+UserSchema.virtual('views', {
+  ref: 'Views',
+  foreignField: 'userId',
+  localField: '_id',
+});
+
 UserSchema.plugin(passportLocalMongoose);
 
 const User = mongoose.model('User', UserSchema);

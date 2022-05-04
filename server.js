@@ -27,11 +27,13 @@ const commentRoutes = require('./routes/comments');
 const eventRoutes = require('./routes/events');
 const likeRoutes = require('./routes/likes');
 const dislikeRoutes = require('./routes/dislikes');
+const viewRoutes = require('./routes/views');
 
 // Passport Config
 require('./config/passport-config')(passport);
 
 const { ensureAuthenticated, ensureIsAdmin } = require('./config/auth');
+const Dislikes = require('./models/dislikes');
 
 const server = express();
 
@@ -51,6 +53,7 @@ app.use(partials());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(methodOverride('_method'));
+app.use(methodOverride());
 
 // app.use(express.static('public'));
 
@@ -101,6 +104,7 @@ app.use('/comment', commentRoutes);
 app.use('/event', eventRoutes);
 app.use('/like', likeRoutes);
 app.use('/dislike', dislikeRoutes);
+app.use('/view', viewRoutes);
 
 app.get('/', async (req, res) => {
   // fetch all the posts
@@ -110,11 +114,17 @@ app.get('/', async (req, res) => {
 
   const events = await Events.find().sort({ createdAt: 'desc' });
 
+  // Likes of particular post
+  const likes = await Likes.find().sort({ createdAt: 'desc' });
+  const dislikes = await Dislikes.find().sort({ createdAt: 'desc' });
+
   // console.log(comments);
   res.render('index', {
     posts,
     comments,
     events,
+    likes,
+    dislikes,
     myCss: myCss,
   });
 });

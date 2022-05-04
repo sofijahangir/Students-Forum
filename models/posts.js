@@ -49,6 +49,14 @@ const postSchema = new mongoose.Schema(
         ref: 'Dislikes',
       },
     ],
+
+    // Array of views
+    views: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Views',
+      },
+    ],
   },
   { timestamps: true }
 );
