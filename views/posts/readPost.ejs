@@ -141,12 +141,57 @@
 
                       </form>
                     </a>
-                    <a href="#" class="tt-icon-btn">
-                      <i class="tt-icon"><svg>
-                          <use xlink:href="#icon-favorite"></use>
+                    <a class="tt-icon-btn">
+
+
+                      <i class="tt-icon" id="viewFormSubmit"><svg>
+                          <use xlink:href="#icon-view"></use>
                         </svg></i>
-                      <span class="tt-text">12</span>
+
+                      <!-- If user is logged in -->
+                      <% if(!user){ %>
+                        <!-- Get all the likes -->
+                        <% const views=post.views %>
+                          <span class="tt-text">
+                            <%= views.length %>
+                          </span>
+
+                          <% }else{ %>
+                            <!-- Get all the likes -->
+                            <% var views=post.views %>
+                              <!-- Get all the likes -->
+                              <% if(views.includes(user.name)){ %>
+                                <span class="tt-text">
+                                  <%= views.length %>
+                                </span>
+                                <% }else{ %>
+                                  <span class="tt-text">
+                                    <%= views.length %>
+                                  </span>
+
+                                  <% } %>
+                                    <% } %>
+
+
+                                      <script>
+
+                                        // Automatically add a view
+
+                                        window.onload = $(document).ready(function () {
+                                          $.ajax({
+                                            type: "POST",
+                                            url: '/view/<%= id %>/add',
+
+                                          });
+
+                                          e.preventDefault();
+                                        });
+
+                                      </script>
                     </a>
+
+
+
 
 
                     <!-- Likes and Views End-->
@@ -170,62 +215,14 @@
                   </div>
                 </div>
               </div>
+
+
+              <div class="tt-wrapper-inner">
+                <h4 class="tt-title-separator"><span>Replies</span></h4>
+              </div>
               <div class="tt-item">
+
                 <div class="tt-info-box">
-                  <h6 class="tt-title">Thread Status</h6>
-                  <div class="tt-row-icon">
-                    <div class="tt-item">
-                      <a href="#" class="tt-icon-btn tt-position-bottom">
-                        <i class="tt-icon"><svg>
-                            <use xlink:href="#icon-reply"></use>
-                          </svg></i>
-                        <span class="tt-text">283</span>
-                      </a>
-                    </div>
-                    <div class="tt-item">
-                      <a href="#" class="tt-icon-btn tt-position-bottom">
-                        <i class="tt-icon"><svg>
-                            <use xlink:href="#icon-view"></use>
-                          </svg></i>
-                        <span class="tt-text">10.5k</span>
-                      </a>
-                    </div>
-                    <div class="tt-item">
-                      <a href="#" class="tt-icon-btn tt-position-bottom">
-                        <i class="tt-icon"><svg>
-                            <use xlink:href="#icon-user"></use>
-                          </svg></i>
-                        <span class="tt-text">168</span>
-                      </a>
-                    </div>
-                    <div class="tt-item">
-                      <a href="#" class="tt-icon-btn tt-position-bottom">
-                        <i class="tt-icon"><svg>
-                            <use xlink:href="#icon-like"></use>
-                          </svg></i>
-                        <span class="tt-text">2.4k</span>
-                      </a>
-                    </div>
-                    <div class="tt-item">
-                      <a href="#" class="tt-icon-btn tt-position-bottom">
-                        <i class="tt-icon"><svg>
-                            <use xlink:href="#icon-favorite"></use>
-                          </svg></i>
-                        <span class="tt-text">951</span>
-                      </a>
-                    </div>
-                    <div class="tt-item">
-                      <a href="#" class="tt-icon-btn tt-position-bottom">
-                        <i class="tt-icon"><svg>
-                            <use xlink:href="#icon-share"></use>
-                          </svg></i>
-                        <span class="tt-text">32</span>
-                      </a>
-                    </div>
-                  </div>
-
-
-                  <hr>
                   <div class="row-object-inline form-default">
                     <h6 class="tt-title">Sort replies by:</h6>
                     <ul class="tt-list-badge tt-size-lg">
