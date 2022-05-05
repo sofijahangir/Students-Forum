@@ -28,6 +28,22 @@ UserSchema.virtual('comments', {
   foreignField: 'userId',
   localField: '_id',
 });
+UserSchema.virtual('likes', {
+  ref: 'Likes',
+  foreignField: 'userId',
+  localField: '_id',
+});
+UserSchema.virtual('dislikes', {
+  ref: 'Dislikes',
+  foreignField: 'userId',
+  localField: '_id',
+});
+
+UserSchema.virtual('views', {
+  ref: 'Views',
+  foreignField: 'userId',
+  localField: '_id',
+});
 
 UserSchema.plugin(passportLocalMongoose);
 

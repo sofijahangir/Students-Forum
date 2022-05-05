@@ -34,6 +34,29 @@ const postSchema = new mongoose.Schema(
         ref: 'Comment',
       },
     ],
+
+    // Array of Likes
+    likes: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Likes',
+      },
+    ],
+    // Array of DisLikes
+    dislikes: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Dislikes',
+      },
+    ],
+
+    // Array of views
+    views: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Views',
+      },
+    ],
   },
   { timestamps: true }
 );

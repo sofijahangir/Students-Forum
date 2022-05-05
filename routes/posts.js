@@ -7,6 +7,8 @@ const {
   deletePost,
 } = require('../controllers/post');
 
+const Likes = require('../models/likes');
+
 const router = express.Router();
 
 const {
@@ -20,7 +22,15 @@ router.get('/new', ensureAuthenticated, (req, res) => {
 router.post('/new', ensureAuthenticated, addPost);
 router.get('/get', getPosts);
 router.get('/dashboard', getPostsOfUser);
-router.get('/read/:id', readPost);
+router.get('/read/:id', readPost, (req, res) => {
+  // Get the likes
+  const { id } = req.params;
+  const likes = Likes.find({ id });
+  const dislikes = Likes.find({ id });
+  res.render('/read/:id', {
+    likes,
+  });
+});
 
 // delete post
 router.get('/delete/:id', ensureAuthenticated, deletePost);
