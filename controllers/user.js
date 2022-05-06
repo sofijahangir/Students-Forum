@@ -89,10 +89,47 @@ const logoutUser = async (req, res) => {
   res.redirect('/login');
 };
 
+// set the user as admin or faculty
+const setUserRole = async (req, res) => {
+  // get the value from query string
+  const { id } = req.query;
+  const { role } = req.query;
+
+  // Find the user
+  const user = await User.findById(id);
+
+  // Set the role
+  user.isAdmin = role === 'admin';
+  user.isFaculty = role === 'faculty';
+
+  if (role == null) {
+    user.isAdmin = false;
+    user.isFaculty = false;
+  }
+  // Save the user
+  await user.save();
+  // Redirect to the users page
+  res.redirect('/dashboard/users');
+  // console.log(id);
+};
+
+// Delete the user
+const deleteUser = async (req, res) => {
+  const userId = req.params.id;
+  try {
+    await User.findByIdAndDelete(userId);
+    res.redirect('/dashboard/users');
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 module.exports = {
   getLoginPage,
   getRegisterPage,
   registerUser,
   loginUser,
   logoutUser,
+  setUserRole,
+  deleteUser,
 };

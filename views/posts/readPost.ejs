@@ -1,414 +1,478 @@
 <%- include('../partials/header'); %>
 
   <!-- Page Content -->
-  <!-- Author Name -->
-  <% var authName=post.author %>
-    <% const name=authName.charAt(0).toLowerCase(); %>
-      <!-- Author Name -->
-      <main id="tt-pageContent">
-        <div class="container">
-          <div class="tt-single-topic-list">
-            <div class="tt-item">
-              <div class="tt-single-topic">
-                <div class="tt-item-header">
-                  <div class="tt-item-info info-top">
-                    <div class="tt-avatar-icon">
-                      <i class="tt-icon"><svg>
-                          <use xlink:href="#icon-ava-<%= name %>"></use>
-                        </svg></i>
-                    </div>
-                    <div class="tt-avatar-title">
-                      <a href="#">
-                        <%= post.author %>
+
+  <!-- Post id  -->
+  <% var id=post._id %>
+
+    <!-- Author Name -->
+    <% var authName=post.author %>
+      <% const name=authName.charAt(0).toLowerCase(); %>
+        <!-- Author Name -->
+        <main id="tt-pageContent">
+          <div class="container">
+            <div class="tt-single-topic-list">
+              <div class="tt-item">
+                <div class="tt-single-topic">
+                  <div class="tt-item-header">
+                    <div class="tt-item-info info-top">
+                      <div class="tt-avatar-icon">
+                        <i class="tt-icon"><svg>
+                            <use xlink:href="#icon-ava-<%= name %>"></use>
+                          </svg></i>
+                      </div>
+                      <div class="tt-avatar-title">
+                        <a href="#">
+                          <%= post.author %>
+                        </a>
+                      </div>
+                      <a href="#" class="tt-info-time">
+                        <i class="tt-icon"><svg>
+                            <use xlink:href="#icon-time"></use>
+                            <!-- Date -->
+                            <% const options={year: 'numeric' , month: 'long' , day: 'numeric' };%>
+                              <!-- Date -->
+                          </svg></i>
+                        <%= post.createdAt.toLocaleDateString('en-US', options); %>
                       </a>
                     </div>
-                    <a href="#" class="tt-info-time">
-                      <i class="tt-icon"><svg>
-                          <use xlink:href="#icon-time"></use>
-                          <!-- Date -->
-                          <% const options={year: 'numeric' , month: 'long' , day: 'numeric' };%>
-                            <!-- Date -->
-                        </svg></i>
-                      <%= post.createdAt.toLocaleDateString('en-US', options); %>
-                    </a>
+                    <h3 class="tt-item-title">
+                      <a href="">
+                        <%= post.title %>
+                      </a>
+                    </h3>
+                    <div class="tt-item-tag">
+                      <ul class="tt-list-badge">
+                        <li><a href="#"><span class="tt-color03 tt-badge">
+                              <%= post.category %>
+                            </span></a></li>
+                      </ul>
+                    </div>
                   </div>
-                  <h3 class="tt-item-title">
-                    <a href="">
+                  <div class="tt-item-description">
+                    <!-- Create Truncate Function -->
+
+                    <!-- Create Truncate Function -->
+                    <h6 class=" tt-title">
                       <%= post.title %>
-                    </a>
-                  </h3>
-                  <div class="tt-item-tag">
-                    <ul class="tt-list-badge">
-                      <li><a href="#"><span class="tt-color03 tt-badge">
-                            <%= post.category %>
-                          </span></a></li>
-                      <li><a href="#"><span class="tt-badge">themeforest</span></a></li>
-                      <li><a href="#"><span class="tt-badge">elements</span></a></li>
-                    </ul>
+                    </h6>
+                    <p>
+                      <%= post.description %>
+                    </p>
+                    <p>
+
+                    </p>
+                    <!-- <h6 class="tt-title">How Does it Work?</h6> -->
+                    <p>
+
+                    </p>
                   </div>
-                </div>
-                <div class="tt-item-description">
-                  <!-- Create Truncate Function -->
 
-                  <!-- Create Truncate Function -->
-                  <h6 class=" tt-title">
-                    <%= post.title %>
-                  </h6>
-                  <p>
-                    <%= post.description %>
-                  </p>
-                  <p>
+                  <!-- Likes and Views -->
 
-                  </p>
-                  <!-- <h6 class="tt-title">How Does it Work?</h6> -->
-                  <p>
 
-                  </p>
-                </div>
-                <div class="tt-item-info info-bottom">
-                  <a href="#" class="tt-icon-btn">
-                    <i class="tt-icon"><svg>
-                        <use xlink:href="#icon-like"></use>
-                      </svg></i>
-                    <span class="tt-text">671</span>
-                  </a>
-                  <a href="#" class="tt-icon-btn">
-                    <i class="tt-icon"><svg>
-                        <use xlink:href="#icon-dislike"></use>
-                      </svg></i>
-                    <span class="tt-text">39</span>
-                  </a>
-                  <a href="#" class="tt-icon-btn">
-                    <i class="tt-icon"><svg>
-                        <use xlink:href="#icon-favorite"></use>
-                      </svg></i>
-                    <span class="tt-text">12</span>
-                  </a>
-                  <div class="col-separator"></div>
-                  <a href="#" class="tt-icon-btn tt-hover-02 tt-small-indent">
-                    <i class="tt-icon"><svg>
-                        <use xlink:href="#icon-share"></use>
-                      </svg></i>
-                  </a>
-                  <a href="#" class="tt-icon-btn tt-hover-02 tt-small-indent">
-                    <i class="tt-icon"><svg>
-                        <use xlink:href="#icon-flag"></use>
-                      </svg></i>
-                  </a>
-                  <a href="#" class="tt-icon-btn tt-hover-02 tt-small-indent">
-                    <i class="tt-icon"><svg>
-                        <use xlink:href="#icon-reply"></use>
-                      </svg></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="tt-item">
-              <div class="tt-info-box">
-                <h6 class="tt-title">Thread Status</h6>
-                <div class="tt-row-icon">
-                  <div class="tt-item">
-                    <a href="#" class="tt-icon-btn tt-position-bottom">
-                      <i class="tt-icon"><svg>
-                          <use xlink:href="#icon-reply"></use>
-                        </svg></i>
-                      <span class="tt-text">283</span>
+
+                  <div class="tt-item-info info-bottom">
+
+                    <a class="tt-icon-btn">
+                      <form id="my_form" action="/like/<%= id %>/add" method="POST">
+                        <i href="javascript:{}" onclick="document.getElementById('my_form').submit();" type="submit" class="tt-icon "
+                          style="color: blue;"><svg>
+                            <use xlink:href="#icon-like" style="color: cyan;"></use>
+                          </svg></i>
+
+                        <!-- If user is logged in -->
+                        <% if(!user){ %>
+                          <!-- Get all the likes -->
+                          <% const likes=post.likes %>
+                            <span class="tt-text" style="color: blue;">
+                              <%= likes.length %>
+                            </span>
+
+                            <% }else{ %>
+                              <!-- Get all the likes -->
+                              <% var likes=post.likes %>
+                                <!-- Get all the likes -->
+                                <% if(likes.includes(user.name)){ %>
+                                  <span class="tt-text" style="color: blue;">
+                                    <%= likes.length %>
+                                  </span>
+                                  <% }else{ %>
+                                    <span class="tt-text" style="color: blue;">
+                                      <%= likes.length %>
+                                    </span>
+                                    <% } %>
+                                      <% } %>
+
+
+                      </form>
+
                     </a>
-                  </div>
-                  <div class="tt-item">
-                    <a href="#" class="tt-icon-btn tt-position-bottom">
-                      <i class="tt-icon"><svg>
+
+
+                    <a class="tt-icon-btn">
+                      <form id="dislikeForm" action="/dislike/<%= id %>/add" method="POST">
+                        <i href="javascript:{}" onclick="document.getElementById('dislikeForm').submit();" type="submit"
+                          class="tt-icon"><svg>
+                            <use xlink:href="#icon-dislike"></use>
+                          </svg></i>
+                        <!-- If user is logged in -->
+                        <% if(!user){ %>
+                          <!-- Get all the likes -->
+                          <% const dislikes=post.dislikes %>
+                            <span class="tt-text">
+                              <%= dislikes.length %>
+                            </span>
+
+                            <% }else{ %>
+                              <!-- Get all the likes -->
+                              <% var dislikes=post.dislikes %>
+                                <!-- Get all the likes -->
+                                <% if(dislikes.includes(user.name)){ %>
+                                  <span class="tt-text">
+                                    <%= dislikes.length %>
+                                  </span>
+                                  <% }else{ %>
+                                    <span class="tt-text">
+                                      <%= dislikes.length %>
+                                    </span>
+                                    <% } %>
+                                      <% } %>
+
+                      </form>
+                    </a>
+                    <a class="tt-icon-btn">
+
+
+                      <i class="tt-icon" id="viewFormSubmit"><svg>
                           <use xlink:href="#icon-view"></use>
                         </svg></i>
-                      <span class="tt-text">10.5k</span>
+
+                      <!-- If user is logged in -->
+                      <% if(!user){ %>
+                        <!-- Get all the likes -->
+                        <% const views=post.views %>
+                          <span class="tt-text">
+                            <%= views.length %>
+                          </span>
+
+                          <% }else{ %>
+                            <!-- Get all the likes -->
+                            <% var views=post.views %>
+                              <!-- Get all the likes -->
+                              <% if(views.includes(user.name)){ %>
+                                <span class="tt-text">
+                                  <%= views.length %>
+                                </span>
+                                <% }else{ %>
+                                  <span class="tt-text">
+                                    <%= views.length %>
+                                  </span>
+
+                                  <% } %>
+                                    <% } %>
+
+
+                                      <script>
+
+                                        // Automatically add a view
+
+                                        window.onload = $(document).ready(function () {
+                                          $.ajax({
+                                            type: "POST",
+                                            url: '/view/<%= id %>/add',
+
+                                          });
+
+                                          e.preventDefault();
+                                        });
+
+                                      </script>
                     </a>
-                  </div>
-                  <div class="tt-item">
-                    <a href="#" class="tt-icon-btn tt-position-bottom">
-                      <i class="tt-icon"><svg>
-                          <use xlink:href="#icon-user"></use>
-                        </svg></i>
-                      <span class="tt-text">168</span>
-                    </a>
-                  </div>
-                  <div class="tt-item">
-                    <a href="#" class="tt-icon-btn tt-position-bottom">
-                      <i class="tt-icon"><svg>
-                          <use xlink:href="#icon-like"></use>
-                        </svg></i>
-                      <span class="tt-text">2.4k</span>
-                    </a>
-                  </div>
-                  <div class="tt-item">
-                    <a href="#" class="tt-icon-btn tt-position-bottom">
-                      <i class="tt-icon"><svg>
-                          <use xlink:href="#icon-favorite"></use>
-                        </svg></i>
-                      <span class="tt-text">951</span>
-                    </a>
-                  </div>
-                  <div class="tt-item">
-                    <a href="#" class="tt-icon-btn tt-position-bottom">
+
+
+
+
+
+                    <!-- Likes and Views End-->
+
+                    <div class="col-separator"></div>
+                    <a href="#" class="tt-icon-btn tt-hover-02 tt-small-indent">
                       <i class="tt-icon"><svg>
                           <use xlink:href="#icon-share"></use>
                         </svg></i>
-                      <span class="tt-text">32</span>
+                    </a>
+                    <a href="#" class="tt-icon-btn tt-hover-02 tt-small-indent">
+                      <i class="tt-icon"><svg>
+                          <use xlink:href="#icon-flag"></use>
+                        </svg></i>
+                    </a>
+                    <a href="#" class="tt-icon-btn tt-hover-02 tt-small-indent">
+                      <i class="tt-icon"><svg>
+                          <use xlink:href="#icon-reply"></use>
+                        </svg></i>
                     </a>
                   </div>
                 </div>
+              </div>
 
 
-                <hr>
-                <div class="row-object-inline form-default">
-                  <h6 class="tt-title">Sort replies by:</h6>
-                  <ul class="tt-list-badge tt-size-lg">
-                    <li><a href="#"><span class="tt-badge">Recent</span></a></li>
-                    <li><a href="#"><span class="tt-color02 tt-badge">Most Liked</span></a></li>
-                    <li><a href="#"><span class="tt-badge">Longest</span></a></li>
-                    <li><a href="#"><span class="tt-badge">Shortest</span></a></li>
-                    <li><a href="#"><span class="tt-badge">Accepted Answers</span></a></li>
-                  </ul>
-                  <select class="tt-select form-control">
-                    <option value="Recent">Recent</option>
-                    <option value="Most Liked">Most Liked</option>
-                    <option value="Longest">Longest</option>
-                    <option value="Shortest">Shortest</option>
-                    <option value="Accepted Answer">Accepted Answer</option>
-                  </select>
+              <div class="tt-wrapper-inner">
+                <h4 class="tt-title-separator"><span>Replies</span></h4>
+              </div>
+              <div class="tt-item">
+
+                <div class="tt-info-box">
+                  <div class="row-object-inline form-default">
+                    <h6 class="tt-title">Sort replies by:</h6>
+                    <ul class="tt-list-badge tt-size-lg">
+                      <li><a href="#"><span class="tt-badge">Recent</span></a></li>
+                      <li><a href="#"><span class="tt-color02 tt-badge">Most Liked</span></a></li>
+                      <li><a href="#"><span class="tt-badge">Longest</span></a></li>
+                      <li><a href="#"><span class="tt-badge">Shortest</span></a></li>
+                      <li><a href="#"><span class="tt-badge">Accepted Answers</span></a></li>
+                    </ul>
+                    <select class="tt-select form-control">
+                      <option value="Recent">Recent</option>
+                      <option value="Most Liked">Most Liked</option>
+                      <option value="Longest">Longest</option>
+                      <option value="Shortest">Shortest</option>
+                      <option value="Accepted Answer">Accepted Answer</option>
+                    </select>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <!-- Comment Start -->
+              <!-- Comment Start -->
 
-            <% comments.forEach(comment=> { %>
-              <% var commenterName=comment.author %>
-                <% const name=commenterName.charAt(0).toLowerCase(); %>
+              <% comments.forEach(comment=> { %>
+                <% var commenterName=comment.author %>
+                  <% const name=commenterName.charAt(0).toLowerCase(); %>
 
-                  <div class="tt-item">
-                    <div class="tt-single-topic">
-                      <div class="tt-item-header pt-noborder">
-                        <div class="tt-item-info info-top">
-                          <div class="tt-avatar-icon">
-                            <i class="tt-icon"><svg>
-                                <use xlink:href="#icon-ava-<%= name %>"></use>
-                              </svg></i>
-                          </div>
-                          <div class="tt-avatar-title">
-                            <a href="#">
-                              <%=comment.author %>
+                    <div class="tt-item">
+                      <div class="tt-single-topic">
+                        <div class="tt-item-header pt-noborder">
+                          <div class="tt-item-info info-top">
+                            <div class="tt-avatar-icon">
+                              <i class="tt-icon"><svg>
+                                  <use xlink:href="#icon-ava-<%= name %>"></use>
+                                </svg></i>
+                            </div>
+                            <div class="tt-avatar-title">
+                              <a href="#">
+                                <%=comment.author %>
+                              </a>
+                            </div>
+                            <a href="#" class="tt-info-time">
+                              <i class="tt-icon"><svg>
+                                  <use xlink:href="#icon-time"></use>
+                                </svg></i>
+                              <!-- Shorten the date -->
+
+                              <% const dateOptions={ year: 'numeric' , month: 'long' , day: 'numeric' };%>
+                                <%= comment.createdAt.toLocaleDateString('en-US', dateOptions); %>
                             </a>
                           </div>
-                          <a href="#" class="tt-info-time">
-                            <i class="tt-icon"><svg>
-                                <use xlink:href="#icon-time"></use>
-                              </svg></i>
-                            <!-- Shorten the date -->
+                        </div>
+                        <div class="tt-item-description">
+                          <%= comment.comment %>
 
-                            <% const dateOptions={ year: 'numeric' , month: 'long' , day: 'numeric' };%>
-                              <%= comment.createdAt.toLocaleDateString('en-US', dateOptions); %>
+                        </div>
+                        <div class="tt-item-info info-bottom">
+                          <a href="#" class="tt-icon-btn">
+                            <i class="tt-icon"><svg>
+                                <use xlink:href="#icon-like"></use>
+                              </svg></i>
+                            <span class="tt-text">671</span>
+                          </a>
+                          <a href="#" class="tt-icon-btn">
+                            <i class="tt-icon"><svg>
+                                <use xlink:href="#icon-dislike"></use>
+                              </svg></i>
+                            <span class="tt-text">39</span>
+                          </a>
+                          <a href="#" class="tt-icon-btn">
+                            <i class="tt-icon"><svg>
+                                <use xlink:href="#icon-favorite"></use>
+                              </svg></i>
+                            <span class="tt-text">12</span>
+                          </a>
+                          <div class="col-separator"></div>
+                          <a href="#" class="tt-icon-btn tt-hover-02 tt-small-indent">
+                            <i class="tt-icon"><svg>
+                                <use xlink:href="#icon-share"></use>
+                              </svg></i>
+                          </a>
+                          <a href="#" class="tt-icon-btn tt-hover-02 tt-small-indent">
+                            <i class="tt-icon"><svg>
+                                <use xlink:href="#icon-flag"></use>
+                              </svg></i>
+                          </a>
+                          <a href="#" class="tt-icon-btn tt-hover-02 tt-small-indent">
+                            <i class="tt-icon"><svg>
+                                <use xlink:href="#icon-reply"></use>
+                              </svg></i>
                           </a>
                         </div>
                       </div>
-                      <div class="tt-item-description">
-                        <%= comment.comment %>
+                    </div>
 
-                      </div>
-                      <div class="tt-item-info info-bottom">
-                        <a href="#" class="tt-icon-btn">
-                          <i class="tt-icon"><svg>
-                              <use xlink:href="#icon-like"></use>
-                            </svg></i>
-                          <span class="tt-text">671</span>
-                        </a>
-                        <a href="#" class="tt-icon-btn">
-                          <i class="tt-icon"><svg>
-                              <use xlink:href="#icon-dislike"></use>
-                            </svg></i>
-                          <span class="tt-text">39</span>
-                        </a>
-                        <a href="#" class="tt-icon-btn">
-                          <i class="tt-icon"><svg>
-                              <use xlink:href="#icon-favorite"></use>
-                            </svg></i>
-                          <span class="tt-text">12</span>
-                        </a>
-                        <div class="col-separator"></div>
-                        <a href="#" class="tt-icon-btn tt-hover-02 tt-small-indent">
-                          <i class="tt-icon"><svg>
-                              <use xlink:href="#icon-share"></use>
-                            </svg></i>
-                        </a>
-                        <a href="#" class="tt-icon-btn tt-hover-02 tt-small-indent">
-                          <i class="tt-icon"><svg>
-                              <use xlink:href="#icon-flag"></use>
-                            </svg></i>
-                        </a>
-                        <a href="#" class="tt-icon-btn tt-hover-02 tt-small-indent">
-                          <i class="tt-icon"><svg>
-                              <use xlink:href="#icon-reply"></use>
-                            </svg></i>
-                        </a>
-                      </div>
+                    <!-- Comment End -->
+                    <% }) %>
+
+            </div>
+          </div>
+          <div class="tt-wrapper-inner">
+            <h4 class="tt-title-separator"><span>You’ve reached the end of replies</span></h4>
+          </div>
+
+          <div class="tt-topic-list">
+            <!-- Login Popup Conditional Rendering  -->
+            <% if(!user){ %>
+
+              <div class="tt-item tt-item-popup">
+                <div class="tt-col-avatar">
+                  <svg class="tt-icon">
+                    <use xlink:href="#icon-ava-f"></use>
+                  </svg>
+                </div>
+                <div class="tt-col-message">
+                  Looks like you are new here. Register for free, learn and contribute.
+                </div>
+                <div class="tt-col-btn">
+                  <button type="button" class="btn btn-primary">Log in</button>
+                  <button type="button" class="btn btn-secondary">Sign up</button>
+                  <button type="button" class="btn-icon">
+                    <svg class="tt-icon">
+                      <use xlink:href="#icon-cancel"></use>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+
+              <% } else{ %>
+                <!-- There is nothing to do -->
+
+                <% } %>
+                  <!-- Login Popup End -->
+          </div>
+
+
+
+          <!-- Comment form -->
+
+          <div class="tt-wrapper-inner">
+            <div class="pt-editor form-default">
+              <h6 class="pt-title">Post Your Reply</h6>
+              <div class="pt-row">
+                <div class="col-left">
+                  <ul class="pt-edit-btn">
+                    <li><button type="button" class="btn-icon">
+                        <svg class="tt-icon">
+                          <use xlink:href="#icon-quote"></use>
+                        </svg>
+                      </button></li>
+                    <li><button type="button" class="btn-icon">
+                        <svg class="tt-icon">
+                          <use xlink:href="#icon-bold"></use>
+                        </svg>
+                      </button></li>
+                    <li><button type="button" class="btn-icon">
+                        <svg class="tt-icon">
+                          <use xlink:href="#icon-italic"></use>
+                        </svg>
+                      </button></li>
+                    <li><button type="button" class="btn-icon">
+                        <svg class="tt-icon">
+                          <use xlink:href="#icon-share_topic"></use>
+                        </svg>
+                      </button></li>
+                    <li><button type="button" class="btn-icon">
+                        <svg class="tt-icon">
+                          <use xlink:href="#icon-blockquote"></use>
+                        </svg>
+                      </button></li>
+                    <li><button type="button" class="btn-icon">
+                        <svg class="tt-icon">
+                          <use xlink:href="#icon-performatted"></use>
+                        </svg>
+                      </button></li>
+                    <li class="hr"></li>
+                    <li><button type="button" class="btn-icon">
+                        <svg class="tt-icon">
+                          <use xlink:href="#icon-upload_files"></use>
+                        </svg>
+                      </button></li>
+                    <li><button type="button" class="btn-icon">
+                        <svg class="tt-icon">
+                          <use xlink:href="#icon-bullet_list"></use>
+                        </svg>
+                      </button></li>
+                    <li><button type="button" class="btn-icon">
+                        <svg class="tt-icon">
+                          <use xlink:href="#icon-heading"></use>
+                        </svg>
+                      </button></li>
+                    <li><button type="button" class="btn-icon">
+                        <svg class="tt-icon">
+                          <use xlink:href="#icon-horizontal_line"></use>
+                        </svg>
+                      </button></li>
+                    <li><button type="button" class="btn-icon">
+                        <svg class="tt-icon">
+                          <use xlink:href="#icon-emoticon"></use>
+                        </svg>
+                      </button></li>
+                    <li><button type="button" class="btn-icon">
+                        <svg class="tt-icon">
+                          <use xlink:href="#icon-settings"></use>
+                        </svg>
+                      </button></li>
+                    <li><button type="button" class="btn-icon">
+                        <svg class="tt-icon">
+                          <use xlink:href="#icon-color_picker"></use>
+                        </svg>
+                      </button></li>
+                  </ul>
+                </div>
+                <div class="col-right tt-hidden-mobile">
+                  <a href="#" class="btn btn-primary">Preview</a>
+                </div>
+              </div>
+
+
+              <form action="/comment/<%= post._id %>/add" method="POST">
+                <div class="form-group">
+                  <textarea name="comment" class="form-control" rows="5" placeholder="Lets get started"></textarea>
+                </div>
+                <div class="pt-row">
+                  <div class="col-auto">
+                    <div class="checkbox-group">
+                      <input type="checkbox" id="checkBox21" name="checkbox" checked="">
+                      <label for="checkBox21">
+                        <span class="check"></span>
+                        <span class="box"></span>
+                        <span class="tt-text">Subscribe to this topic.</span>
+                      </label>
                     </div>
                   </div>
-
-                  <!-- Comment End -->
-                  <% }) %>
-
-          </div>
-        </div>
-        <div class="tt-wrapper-inner">
-          <h4 class="tt-title-separator"><span>You’ve reached the end of replies</span></h4>
-        </div>
-
-        <div class="tt-topic-list">
-          <!-- Login Popup Conditional Rendering  -->
-          <% if(!user){ %>
-
-            <div class="tt-item tt-item-popup">
-              <div class="tt-col-avatar">
-                <svg class="tt-icon">
-                  <use xlink:href="#icon-ava-f"></use>
-                </svg>
-              </div>
-              <div class="tt-col-message">
-                Looks like you are new here. Register for free, learn and contribute.
-              </div>
-              <div class="tt-col-btn">
-                <button type="button" class="btn btn-primary">Log in</button>
-                <button type="button" class="btn btn-secondary">Sign up</button>
-                <button type="button" class="btn-icon">
-                  <svg class="tt-icon">
-                    <use xlink:href="#icon-cancel"></use>
-                  </svg>
-                </button>
-              </div>
-            </div>
-
-
-            <% } else{ %>
-              <!-- There is nothing to do -->
-
-              <% } %>
-                <!-- Login Popup End -->
-        </div>
-
-
-
-        <!-- Comment form -->
-
-        <div class="tt-wrapper-inner">
-          <div class="pt-editor form-default">
-            <h6 class="pt-title">Post Your Reply</h6>
-            <div class="pt-row">
-              <div class="col-left">
-                <ul class="pt-edit-btn">
-                  <li><button type="button" class="btn-icon">
-                      <svg class="tt-icon">
-                        <use xlink:href="#icon-quote"></use>
-                      </svg>
-                    </button></li>
-                  <li><button type="button" class="btn-icon">
-                      <svg class="tt-icon">
-                        <use xlink:href="#icon-bold"></use>
-                      </svg>
-                    </button></li>
-                  <li><button type="button" class="btn-icon">
-                      <svg class="tt-icon">
-                        <use xlink:href="#icon-italic"></use>
-                      </svg>
-                    </button></li>
-                  <li><button type="button" class="btn-icon">
-                      <svg class="tt-icon">
-                        <use xlink:href="#icon-share_topic"></use>
-                      </svg>
-                    </button></li>
-                  <li><button type="button" class="btn-icon">
-                      <svg class="tt-icon">
-                        <use xlink:href="#icon-blockquote"></use>
-                      </svg>
-                    </button></li>
-                  <li><button type="button" class="btn-icon">
-                      <svg class="tt-icon">
-                        <use xlink:href="#icon-performatted"></use>
-                      </svg>
-                    </button></li>
-                  <li class="hr"></li>
-                  <li><button type="button" class="btn-icon">
-                      <svg class="tt-icon">
-                        <use xlink:href="#icon-upload_files"></use>
-                      </svg>
-                    </button></li>
-                  <li><button type="button" class="btn-icon">
-                      <svg class="tt-icon">
-                        <use xlink:href="#icon-bullet_list"></use>
-                      </svg>
-                    </button></li>
-                  <li><button type="button" class="btn-icon">
-                      <svg class="tt-icon">
-                        <use xlink:href="#icon-heading"></use>
-                      </svg>
-                    </button></li>
-                  <li><button type="button" class="btn-icon">
-                      <svg class="tt-icon">
-                        <use xlink:href="#icon-horizontal_line"></use>
-                      </svg>
-                    </button></li>
-                  <li><button type="button" class="btn-icon">
-                      <svg class="tt-icon">
-                        <use xlink:href="#icon-emoticon"></use>
-                      </svg>
-                    </button></li>
-                  <li><button type="button" class="btn-icon">
-                      <svg class="tt-icon">
-                        <use xlink:href="#icon-settings"></use>
-                      </svg>
-                    </button></li>
-                  <li><button type="button" class="btn-icon">
-                      <svg class="tt-icon">
-                        <use xlink:href="#icon-color_picker"></use>
-                      </svg>
-                    </button></li>
-                </ul>
-              </div>
-              <div class="col-right tt-hidden-mobile">
-                <a href="#" class="btn btn-primary">Preview</a>
-              </div>
-            </div>
-
-
-            <form action="/comment/<%= post._id %>/add" method="POST">
-              <div class="form-group">
-                <textarea name="comment" class="form-control" rows="5" placeholder="Lets get started"></textarea>
-              </div>
-              <div class="pt-row">
-                <div class="col-auto">
-                  <div class="checkbox-group">
-                    <input type="checkbox" id="checkBox21" name="checkbox" checked="">
-                    <label for="checkBox21">
-                      <span class="check"></span>
-                      <span class="box"></span>
-                      <span class="tt-text">Subscribe to this topic.</span>
-                    </label>
+                  <div class="col-auto">
+                    <button type="submit" class="btn btn-secondary btn-width-lg">Reply</button>
+                    <!-- <a href="#" class="btn btn-secondary btn-width-lg">Reply</a> -->
                   </div>
-                </div>
-                <div class="col-auto">
-                  <button type="submit" class="btn btn-secondary btn-width-lg">Reply</button>
-                  <!-- <a href="#" class="btn btn-secondary btn-width-lg">Reply</a> -->
-                </div>
-            </form>
+              </form>
 
 
+            </div>
           </div>
-        </div>
-        </div>
+          </div>
 
 
-        <!-- Comment form end -->
+          <!-- Comment form end -->
 
-      </main>
+        </main>
 
 
 
-      <%- include('../partials/footer'); %>
+        <%- include('../partials/footer'); %>

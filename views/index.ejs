@@ -101,7 +101,6 @@
                         <div class="tt-col-value hide-mobile">Likes</div>
                         <div class="tt-col-value hide-mobile">Replies</div>
                         <div class="tt-col-value hide-mobile">Views</div>
-                        <div class="tt-col-value">Activity</div>
                       </div>
                       <!-- <div class="tt-topic-alert tt-alert-default" role="alert">
             <a href="#" target="_blank">4 new posts</a> are added recently, click here to load them.
@@ -132,13 +131,18 @@
                               <%var id=post._id %>
                                 <!-- Post Id -->
                                 <div class="tt-col-description">
-                                  <h6 class="tt-title"><a href="post/read/<%= id; %>">
+
+                                  <h6 class="tt-title">
+
+
+                                    <a href="post/read/<%= id; %>">
                                       <svg class="tt-icon">
                                         <use xlink:href="#icon-pinned"></use>
                                       </svg>
-
                                       <%= post.title %>
-                                    </a></h6>
+                                    </a>
+                                  </h6>
+
                                   <div class="row align-items-center no-gutters">
                                     <div class="col-11">
                                       <ul class="tt-list-badge">
@@ -155,12 +159,21 @@
                                 <div class="tt-col-category"><span class="tt-color01 tt-badge">
                                     <%= post.category %>
                                   </span></div>
-                                <div class="tt-col-value hide-mobile">985</div>
-                                <div class="tt-col-value tt-color-select hide-mobile">502</div>
-                                <div class="tt-col-value hide-mobile">15.1k</div>
-                                <div class="tt-col-value hide-mobile">1h</div>
+                                <div class="tt-col-value tt-color-select hide-mobile">
+
+                                  <%= post.likes.length %>
+
+                                </div>
+                                <div class="tt-col-value tt-color-select hide-mobile">
+                                  <%= post.comments.length %>
+                                </div>
+                                <div class="tt-col-value hide-mobile">
+                                  <%= post.views.length %>
+                                </div>
                             </div>
                             <!-- Posts End -->
+
+
 
                             <% }) %>
 
@@ -399,5 +412,10 @@
         </div>
       </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous">
+      </script>
+
 
     <%- include('partials/footer'); %>

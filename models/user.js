@@ -11,6 +11,7 @@ const UserSchema = new mongoose.Schema(
     email: { type: String, required: true },
     phone: { type: Number, required: true },
     password: { type: String, required: true },
+    isSuperAdmin: { type: Boolean, default: false },
     isAdmin: { type: Boolean, default: false },
     isFaculty: { type: Boolean, default: false },
   },
@@ -24,6 +25,22 @@ UserSchema.virtual('posts', {
 });
 UserSchema.virtual('comments', {
   ref: 'Comment',
+  foreignField: 'userId',
+  localField: '_id',
+});
+UserSchema.virtual('likes', {
+  ref: 'Likes',
+  foreignField: 'userId',
+  localField: '_id',
+});
+UserSchema.virtual('dislikes', {
+  ref: 'Dislikes',
+  foreignField: 'userId',
+  localField: '_id',
+});
+
+UserSchema.virtual('views', {
+  ref: 'Views',
   foreignField: 'userId',
   localField: '_id',
 });
