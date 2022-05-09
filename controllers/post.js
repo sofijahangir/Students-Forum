@@ -25,8 +25,12 @@ const addPost = async (req, res) => {
   res.redirect('/');
 };
 const getPosts = async (req, res) => {
-  const posts = await Post.find();
-  res.send(posts);
+  try {
+    const posts = await Post.find();
+    res.send(posts);
+  } catch (err) {
+    res.status(500).send(err);
+  }
 };
 
 const readPost = async (req, res) => {
