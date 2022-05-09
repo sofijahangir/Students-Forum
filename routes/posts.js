@@ -20,7 +20,7 @@ router.get('/new', ensureAuthenticated, (req, res) => {
   res.render('posts/newPost');
 });
 router.post('/new', ensureAuthenticated, addPost);
-router.get('/get', getPosts);
+// router.get('/get', getPosts);
 router.get('/dashboard', getPostsOfUser);
 router.get('/read/:id', readPost, (req, res) => {
   // Get the likes
