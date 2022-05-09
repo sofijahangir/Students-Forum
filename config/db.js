@@ -1,10 +1,7 @@
 const mongoose = require('mongoose');
 
 const mongoConnect = async () => {
-  const connection = await mongoose.connect(
-    'mongodb+srv://jsofi502:forum@cluster0.pd5rt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
-    {}
-  );
+  const connection = await mongoose.connect(process.env.ONLINE_DB, {});
   console.log('Connected to Forum Database.');
 };
 
