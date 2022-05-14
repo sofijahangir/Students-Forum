@@ -12,6 +12,11 @@ const addPost = async (req, res) => {
   const author = await User.findById(userId);
   // console.log(author.name);
   const { title, description, category, image } = req.body;
+
+  // Convert the description from contentful text to html
+
+  // const descriptionRichText = JSON.stringify(description);
+
   const newPost = new Post({
     userId,
     author: author.name,
@@ -20,6 +25,7 @@ const addPost = async (req, res) => {
     category,
     image,
   });
+
   await newPost.save();
   // console.log(username);
   res.redirect('/');

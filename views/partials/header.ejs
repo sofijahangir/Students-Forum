@@ -13,6 +13,24 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
     crossorigin="anonymous">
     </script>
+
+  <script src="https://cdn.tiny.cloud/1/38sowtuul78g3ogpnp14obiqkthryal1380kauhq4m9glz6u/tinymce/6/tinymce.min.js"
+    referrerpolicy="origin"></script>
+
+  <script>
+    tinymce.init({
+      selector: '#mytextarea',
+      plugins: [
+        'a11ychecker', 'advlist', 'advcode', 'advtable', 'autolink', 'checklist', 'export',
+        'lists', 'link', 'image', 'charmap', 'preview', 'anchor', 'searchreplace', 'visualblocks',
+        'powerpaste', 'fullscreen', 'formatpainter', 'insertdatetime', 'media', 'table', 'help', 'wordcount'
+      ],
+      toolbar: 'undo redo | formatpainter casechange blocks | bold italic backcolor | ' +
+        'alignleft aligncenter alignright alignjustify | ' +
+        'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
+    });
+  </script>
+
   <%- include('./css/style'); %>
 </head>
 <body>

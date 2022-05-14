@@ -14,7 +14,10 @@ const postSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    // Description may contain rich text
+
     description: {
+      // rich text data type
       type: String,
       required: true,
     },

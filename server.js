@@ -45,8 +45,6 @@ const port = process.env.PORT || 3000;
 const myCss = fs.readFileSync('./views/partials/css/style.css', 'utf8');
 
 // EJS
-
-// app.use(expressLayouts);
 app.set('view engine', 'ejs');
 app.use(partials());
 
