@@ -110,7 +110,12 @@ app.get('/', async (req, res) => {
 
   const comments = await Comments.find().sort({ createdAt: 'desc' });
 
-  const events = await Events.find().sort({ createdAt: 'desc' });
+  // Dont show expired events on the home page use dateAndTime
+  const events = await Events.find({ dateAndTime: { $gte: new Date() } }).sort({
+    dateAndTime: 'asc',
+  });
+
+  // const events = await Events.find().sort({ createdAt: 'desc' });
 
   // Likes of particular post
   const likes = await Likes.find().sort({ createdAt: 'desc' });
