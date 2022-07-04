@@ -225,9 +225,6 @@
               <div class="tt-wrapper-inner">
                 <h4 class="tt-title-separator"><span>Replies</span></h4>
               </div>
-
-
-
               <!-- Comment Start -->
 
               <% comments.forEach(comment=> { %>
@@ -275,9 +272,10 @@
             <h4 class="tt-title-separator"><span>You’ve reached the end of replies</span></h4>
           </div>
 
-          <div class="tt-topic-list">
-            <!-- Login Popup Conditional Rendering  -->
-            <% if(!user){ %>
+          <% if(!user){ %>
+
+            <div class="tt-topic-list">
+              <!-- Login Popup Conditional Rendering  -->
 
               <div class="tt-item tt-item-popup">
                 <div class="tt-col-avatar">
@@ -305,40 +303,32 @@
 
                 <% } %>
                   <!-- Login Popup End -->
-          </div>
-
-
-
-          <!-- Comment form -->
-
-          <div class="tt-wrapper-inner">
-            <div class="pt-editor form-default">
-              <h6 class="pt-title">Post Your Reply</h6>
-              <hr>
-              <form action="/comment/<%= post._id %>/add" method="POST">
-                <div class="form-group">
-                  <textarea id="mytextarea" name="comment" class="form-control" rows="5" placeholder="Lets get started"></textarea>
-                </div>
-                <div class="pt-row">
-                  <div class="col-auto">
-
-                  </div>
-                  <div class="col-auto">
-                    <button type="submit" class="btn btn-secondary btn-width-lg">Reply</button>
-                    <!-- <a href="#" class="btn btn-secondary btn-width-lg">Reply</a> -->
-                  </div>
-              </form>
-
-
             </div>
-          </div>
-          </div>
 
+            <!-- Comment form -->
 
-          <!-- Comment form end -->
+            <div class="tt-wrapper-inner">
+              <div class="pt-editor form-default">
+                <h6 class="pt-title">Post Your Reply</h6>
+                <hr>
+                <form action="/comment/<%= post._id %>/add" method="POST">
+                  <div class="form-group">
+                    <textarea id="mytextarea" name="comment" class="form-control" rows="5" placeholder="Lets get started"></textarea>
+                  </div>
+                  <div class="pt-row">
+                    <div class="col-auto">
+
+                    </div>
+                    <div class="col-auto">
+                      <button type="submit" class="btn btn-secondary btn-width-lg">Reply</button>
+                      <!-- <a href="#" class="btn btn-secondary btn-width-lg">Reply</a> -->
+                    </div>
+                </form>
+              </div>
+            </div>
+            </div>
+            <!-- Comment form end -->
 
         </main>
-
-
 
         <%- include('../partials/footer'); %>

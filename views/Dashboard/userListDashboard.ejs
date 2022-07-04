@@ -235,39 +235,55 @@
                                         <% } %>
 
 
-                                          <div class="badge badge-success">
+                                          <% if(user.isSuperAdmin){ %>
+                                            <% } else{ %>
+                                              <div class="badge badge-success">
 
-                                            <button
-                                              onclick="window.location.href = 'http://localhost:3000/user/setRole/?id=<%= user._id %>&role=admin';"
-                                              class="btn-wide btn btn-success">Set as
-                                              Admin</button>
+                                                <button
+                                                  onclick="window.location.href = 'http://localhost:3000/user/setRole/?id=<%= user._id %>&role=admin';"
+                                                  class="btn-wide btn btn-success">Set as
+                                                  Admin</button>
 
-                                          </div>
-                                          <div class="badge badge-success">
-                                            <button
-                                              onclick="window.location.href = 'http://localhost:3000/user/setRole/?id=<%= user._id %>&role=faculty';"
-                                              class="btn-wide btn btn-success">Set as
-                                              Faculty</button>
-                                          </div>
-                                          <div class="badge badge-success">
-                                            <button
-                                              onclick="window.location.href = 'http://localhost:3000/user/setRole/?id=<%= user._id %>&role=null';"
-                                              class="btn-wide btn btn-success">Remove Both Roles
-                                            </button>
-                                          </div>
+                                              </div>
+                                              <div class="badge badge-success">
+                                                <button
+                                                  onclick="window.location.href = 'http://localhost:3000/user/setRole/?id=<%= user._id %>&role=faculty';"
+                                                  class="btn-wide btn btn-success">Set as
+                                                  Faculty</button>
+                                              </div>
+                                              <div class="badge badge-success">
+                                                <button
+                                                  onclick="window.location.href = 'http://localhost:3000/user/setRole/?id=<%= user._id %>&role=null';"
+                                                  class="btn-wide btn btn-success">Remove Both Roles
+                                                </button>
+                                              </div>
+                                              <% } %>
+
+
 
                               </td>
+
+                              <!-- Check if user is super Amdin -->
+
+
                               <td class="text-center">
 
-                                <button class="mr-2 btn-icon btn-icon-only btn btn-outline-primary"><i class="pe-7s-note btn-icon-wrapper">
-                                  </i></button>
+                                <% if(user.isSuperAdmin){ %>
 
-                                <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"
-                                  onclick="window.location.href = 'http://localhost:3000/user/delete/<%= id; %>';"><i
-                                    class="pe-7s-trash btn-icon-wrapper" alt="Delete User">
-                                  </i>
-                                </button>
-                                <!-- <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger" onclick=deletePost();><i
+                                  <% } else{ %>
+                                    <button class="mr-2 btn-icon btn-icon-only btn btn-outline-primary"><i
+                                        class="pe-7s-note btn-icon-wrapper">
+                                      </i></button>
+
+                                    <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"
+                                      onclick="window.location.href = 'http://localhost:3000/user/delete/<%= id; %>';"><i
+                                        class="pe-7s-trash btn-icon-wrapper" alt="Delete User">
+                                      </i>
+                                    </button>
+                                    <% } %>
+
+
+                                      <!-- <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger" onclick=deletePost();><i
                                     class="pe-7s-trash btn-icon-wrapper">
                                   </i>
                                 </button> -->
